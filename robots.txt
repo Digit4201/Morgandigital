@@ -1,0 +1,6 @@
+# Indique à tous les robots (user-agents) qu'ils peuvent explorer le site.
+User-agent: *
+Allow: /
+
+# Spécifie l'emplacement du sitemap pour aider les robots à trouver toutes les pages.
+Sitemap: https://www.morgandigital.fr/sitemap.xml

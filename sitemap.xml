@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- Page d'accueil Anglaise -->
+  <url>
+    <loc>https://www.morgandigital.fr/index.html</loc>
+    <lastmod>2025-08-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.00</priority>
+    <xhtml:link 
+                 rel="alternate"
+                 hreflang="fr"
+                 href="https://www.morgandigital.fr/index-fr.html"/>
+    <xhtml:link 
+                 rel="alternate"
+                 hreflang="en"
+                 href="https://www.morgandigital.fr/index.html"/>
+  </url>
+  
+  <!-- Page d'accueil Française -->
+  <url>
+    <loc>https://www.morgandigital.fr/index-fr.html</loc>
+    <lastmod>2025-08-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.00</priority>
+    <xhtml:link 
+                 rel="alternate"
+                 hreflang="en"
+                 href="https://www.morgandigital.fr/index.html"/>
+    <xhtml:link 
+                 rel="alternate"
+                 hreflang="fr"
+                 href="https://www.morgandigital.fr/index-fr.html"/>
+  </url>
+
+  <!-- Pages Légales Françaises -->
+  <url>
+    <loc>https://www.morgandigital.fr/mentions-legales.html</loc>
+    <lastmod>2025-08-17</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.30</priority>
+    <xhtml:link 
+                 rel="alternate"
+                 hreflang="en"
+                 href="https://www.morgandigital.fr/legal-mentions.html"/>
+  </url>
+  <url>
+    <loc>https://www.morgandigital.fr/politique-de-confidentialite.html</loc>
+    <lastmod>2025-08-17</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.30</priority>
+    <xhtml:link 
+                 rel="alternate"
+                 hreflang="en"
+                 href="https://www.morgandigital.fr/privacy-policy.html"/>
+  </url>
+
+  <!-- Pages Légales Anglaises -->
+  <url>
+    <loc>https://www.morgandigital.fr/legal-mentions.html</loc>
+    <lastmod>2025-08-17</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.30</priority>
+    <xhtml:link 
+                 rel="alternate"
+                 hreflang="fr"
+                 href="https://www.morgandigital.fr/mentions-legales.html"/>
+  </url>
+  <url>
+    <loc>https://www.morgandigital.fr/privacy-policy.html</loc>
+    <lastmod>2025-08-17</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.30</priority>
+    <xhtml:link 
+                 rel="alternate"
+                 hreflang="fr"
+                 href="https://www.morgandigital.fr/politique-de-confidentialite.html"/>
+  </url>
+
+</urlset>
