@@ -94,6 +94,47 @@ const translations = {
         footer_contact_title: "Contact",
         footer_legal_mentions: "Legal Mentions",
         footer_privacy_policy: "Privacy Policy",
+        pricing_badge: "Our Packages",
+        pricing_title: 'Choose your <span class="gradient-text">perfect plan</span>',
+        pricing_subtitle: "Professional landing pages at unbeatable prices. Limited time offer!",
+        pricing_starter_title: "Starter",
+        pricing_starter_subtitle: "Perfect for getting started",
+        pricing_starter_old_price: "€599",
+        pricing_starter_new_price: "€399",
+        pricing_starter_period: "One-time payment",
+        pricing_starter_feature_1: "✓ Custom Landing Page",
+        pricing_starter_feature_2: "✓ Mobile Responsive",
+        pricing_starter_feature_3: "✓ Basic SEO Optimization",
+        pricing_starter_feature_4: "✓ 48h Delivery",
+        pricing_starter_feature_5: "✓ 3 Revisions",
+        pricing_starter_button: "Get Started",
+        pricing_popular_badge: "Most Popular",
+        pricing_professional_title: "Professional",
+        pricing_professional_subtitle: "For serious businesses",
+        pricing_professional_old_price: "€1,199",
+        pricing_professional_new_price: "€799",
+        pricing_professional_period: "One-time payment",
+        pricing_professional_feature_1: "✓ Premium Landing Page",
+        pricing_professional_feature_2: "✓ Advanced Animations",
+        pricing_professional_feature_3: "✓ Complete SEO Package",
+        pricing_professional_feature_4: "✓ Analytics Integration",
+        pricing_professional_feature_5: "✓ 24h Express Delivery",
+        pricing_professional_feature_6: "✓ Unlimited Revisions",
+        pricing_professional_feature_7: "✓ 30-day Support",
+        pricing_professional_button: "Choose Professional",
+        pricing_enterprise_title: "Enterprise",
+        pricing_enterprise_subtitle: "Complete solution",
+        pricing_enterprise_old_price: "€1,999",
+        pricing_enterprise_new_price: "€1,299",
+        pricing_enterprise_period: "One-time payment",
+        pricing_enterprise_feature_1: "✓ Multi-page Website",
+        pricing_enterprise_feature_2: "✓ Custom CRM Integration",
+        pricing_enterprise_feature_3: "✓ Advanced Analytics",
+        pricing_enterprise_feature_4: "✓ Email Marketing Setup",
+        pricing_enterprise_feature_5: "✓ Priority Support",
+        pricing_enterprise_feature_6: "✓ 12h Ultra-fast Delivery",
+        pricing_enterprise_feature_7: "✓ 90-day Warranty",
+        pricing_enterprise_button: "Go Enterprise",
     },
     fr: {
         nav_advantages: "Avantages",
@@ -187,6 +228,47 @@ const translations = {
         footer_contact_title: "Contact",
         footer_legal_mentions: "Mentions Légales",
         footer_privacy_policy: "Politique de Confidentialité",
+        pricing_badge: "Nos Forfaits",
+        pricing_title: 'Choisissez votre <span class="gradient-text">forfait idéal</span>',
+        pricing_subtitle: "Landing pages professionnelles à prix imbattables. Offre limitée !",
+        pricing_starter_title: "Débutant",
+        pricing_starter_subtitle: "Parfait pour commencer",
+        pricing_starter_old_price: "€599",
+        pricing_starter_new_price: "€399",
+        pricing_starter_period: "Paiement unique",
+        pricing_starter_feature_1: "✓ Landing Page Sur-Mesure",
+        pricing_starter_feature_2: "✓ Responsive Mobile",
+        pricing_starter_feature_3: "✓ SEO de Base",
+        pricing_starter_feature_4: "✓ Livraison 48h",
+        pricing_starter_feature_5: "✓ 3 Révisions",
+        pricing_starter_button: "Commencer",
+        pricing_popular_badge: "Le Plus Populaire",
+        pricing_professional_title: "Professionnel",
+        pricing_professional_subtitle: "Pour les entreprises sérieuses",
+        pricing_professional_old_price: "€1,199",
+        pricing_professional_new_price: "€799",
+        pricing_professional_period: "Paiement unique",
+        pricing_professional_feature_1: "✓ Landing Page Premium",
+        pricing_professional_feature_2: "✓ Animations Avancées",
+        pricing_professional_feature_3: "✓ Package SEO Complet",
+        pricing_professional_feature_4: "✓ Intégration Analytics",
+        pricing_professional_feature_5: "✓ Livraison Express 24h",
+        pricing_professional_feature_6: "✓ Révisions Illimitées",
+        pricing_professional_feature_7: "✓ Support 30 jours",
+        pricing_professional_button: "Choisir Professionnel",
+        pricing_enterprise_title: "Entreprise",
+        pricing_enterprise_subtitle: "Solution complète",
+        pricing_enterprise_old_price: "€1,999",
+        pricing_enterprise_new_price: "€1,299",
+        pricing_enterprise_period: "Paiement unique",
+        pricing_enterprise_feature_1: "✓ Site Multi-pages",
+        pricing_enterprise_feature_2: "✓ Intégration CRM Custom",
+        pricing_enterprise_feature_3: "✓ Analytics Avancées",
+        pricing_enterprise_feature_4: "✓ Setup Email Marketing",
+        pricing_enterprise_feature_5: "✓ Support Prioritaire",
+        pricing_enterprise_feature_6: "✓ Livraison Ultra-rapide 12h",
+        pricing_enterprise_feature_7: "✓ Garantie 90 jours",
+        pricing_enterprise_button: "Aller Entreprise",
     }
 };
 
@@ -234,26 +316,77 @@ function initContactForm() {
     const form = document.getElementById('contact-form');
     if (!form) return;
 
+    // Génération d'un token CSRF simple côté client
+    function generateCSRFToken() {
+        return Array.from(crypto.getRandomValues(new Uint8Array(16)), b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    // Validation côté client renforcée
+    function validateForm(formData) {
+        const name = formData.get('name')?.trim();
+        const email = formData.get('email')?.trim();
+        const message = formData.get('message')?.trim();
+
+        // Validation nom (2-50 caractères, lettres et espaces uniquement)
+        if (!name || name.length < 2 || name.length > 50 || !/^[a-zA-ZÀ-ÿ\s-']+$/.test(name)) {
+            throw new Error('Nom invalide (2-50 caractères, lettres uniquement)');
+        }
+
+        // Validation email (format + longueur)
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!email || email.length > 254 || !emailRegex.test(email)) {
+            throw new Error('Adresse email invalide');
+        }
+
+        // Validation message (10-2000 caractères)
+        if (!message || message.length < 10 || message.length > 2000) {
+            throw new Error('Message doit contenir entre 10 et 2000 caractères');
+        }
+
+        // Protection contre les injections basiques
+        const dangerousPatterns = [/<script/i, /javascript:/i, /on\w+\s*=/i, /data:text\/html/i];
+        const content = name + email + message;
+        if (dangerousPatterns.some(pattern => pattern.test(content))) {
+            throw new Error('Contenu non autorisé détecté');
+        }
+
+        return { name, email, message };
+    }
+
     form.addEventListener('submit', async function(e) {
         e.preventDefault();
         
         const submitButton = form.querySelector('button[type="submit"]');
         const originalButtonText = submitButton.innerHTML;
         
-        // Affiche un état de chargement
-        submitButton.disabled = true;
-        submitButton.innerHTML = 'Envoi en cours...';
-
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData.entries());
-
         try {
+            const formData = new FormData(form);
+            
+            // Validation des données
+            const validatedData = validateForm(formData);
+            
+            // Affiche un état de chargement
+            submitButton.disabled = true;
+            submitButton.innerHTML = 'Envoi en cours...';
+
+            // Ajout du token CSRF et timestamp
+            const csrfToken = generateCSRFToken();
+            const timestamp = Date.now();
+            
+            const data = {
+                ...validatedData,
+                _csrf: csrfToken,
+                _timestamp: timestamp,
+                _honeypot: '' // Protection anti-spam (champ caché)
+            };
+
             const response = await fetch(form.action, {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: {
                     'Content-Type': 'application/json',
-                    'Accept': 'application/json'
+                    'Accept': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest' // Protection CSRF additionnelle
                 }
             });
 
@@ -269,10 +402,10 @@ function initContactForm() {
                 throw new Error(errorData.error || 'Une erreur est survenue.');
             }
         } catch (error) {
-            // Erreur réseau ou autre
+            // Erreur de validation ou réseau
             submitButton.innerHTML = 'Échec de l\'envoi';
             submitButton.style.backgroundColor = '#ef4444'; // Rouge erreur
-            displayFormMessage(`Une erreur est survenue: ${error.message}`, 'error');
+            displayFormMessage(`Erreur: ${error.message}`, 'error');
         } finally {
             // Réinitialise le bouton après quelques secondes
             setTimeout(() => {
