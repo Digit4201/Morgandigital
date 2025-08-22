@@ -571,6 +571,32 @@ function initScrollAnimations() {
 }
 
 // ========================================
+// MODE SOMBRE
+// ========================================
+function initThemeToggle() {
+    console.log("Initialisation du mode sombre");
+    
+    const themeToggle = document.querySelector('.theme-toggle');
+    if (!themeToggle) return;
+    
+    // Vérifier le thème sauvegardé ou préférence système
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        document.body.classList.add('dark-mode');
+    }
+    
+    // Clic sur le bouton
+    themeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        const isDark = document.body.classList.contains('dark-mode');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        console.log(`Mode ${isDark ? 'sombre' : 'clair'} activé`);
+    });
+}
+
+// ========================================
 // INITIALISATION DE L'APPLICATION
 // ========================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -581,6 +607,9 @@ document.addEventListener('DOMContentLoaded', () => {
         initFloatingOffer();
         initCursorEffects();
         initScrollAnimations();
+        
+        // Mode sombre
+        initThemeToggle();
         
         // Menu mobile simple
         const mobileToggle = document.querySelector('.mobile-menu-toggle');

@@ -31,13 +31,12 @@
     <!-- CSS -->
     <!-- Security Headers -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://formspree.io https://js.stripe.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://formspree.io https://api.stripe.com; frame-src https://js.stripe.com; object-src 'none'; base-uri 'self';">
-    <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
     <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
     
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.min.css">
     <link rel="stylesheet" href="security-styles.css">
 
     <!-- JSON-LD Structured Data -->
@@ -660,59 +659,10 @@
     
     <script src="vendor/tsparticles.bundle.min.js"></script>
     <script src="security-monitor.js"></script>
-    <script src="performance-optimizer.js"></script>
     <script src="secure-countdown.js"></script>
     <script src="script.js"></script>
     <script src="fix-form.js"></script>
     <script src="fix-payment-buttons.js"></script>
-    
-    <script>
-    console.log("Script particules démarré");
-    console.log("tsParticles disponible :", typeof tsParticles);
-
-    function initParticlesFinal() {
-        console.log("initParticlesFinal appelée");
-        
-        if (typeof tsParticles !== 'undefined') {
-            console.log("tsParticles trouvé, initialisation...");
-            
-            tsParticles.load("particles-js", {
-                particles: {
-                    number: { value: 40 },
-                    color: { value: "#a78bfa" },
-                    shape: { type: "circle" },
-                    opacity: { value: 0.5 },
-                    size: { 
-                        value: 3,
-                        random: true
-                    },
-                    move: {
-                        enable: true,
-                        speed: 2
-                    },
-                    line_linked: {
-                        enable: true,
-                        distance: 150,
-                        color: "#a78bfa",
-                        opacity: 0.4,
-                        width: 1
-                    }
-                },
-                retina_detect: true
-            }).then(() => {
-                console.log("Particules chargées avec succès !");
-            }).catch((error) => {
-                console.error("Erreur particules:", error);
-            });
-        } else {
-            console.error("tsParticles non disponible !");
-        }
-    }
-
-    // Multiple tentatives comme dans le test qui marche
-    initParticlesFinal();
-    setTimeout(initParticlesFinal, 1000);
-    window.addEventListener('load', initParticlesFinal);
-    </script>
+    <script src="particles-init.js"></script>
 </body>
 </html>
