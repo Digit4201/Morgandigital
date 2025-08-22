@@ -62,3 +62,38 @@ ssl/
 debug.log
 error.log
 access.log
+
+# ===================================
+# FICHIERS DE DÉVELOPPEMENT À IGNORER
+# ===================================
+
+# Fichiers markdown de documentation/debug
+*.md
+DEPLOYMENT-IMPROVEMENTS.md
+SOLUTION-PARTICULES.md
+
+# Fichiers HTML de test
+test-*.html
+*-backup.html
+*-clean.html
+*-fix.html
+particles-css.html
+particles-fix.html
+
+# Scripts de développement/debug
+fix-*.js
+*-debug.js
+*-template.php
+*-example.php
+script-mobile-optimized.js
+script-production.js
+mobile-lang-debug.js
+
+# Fichiers de configuration serveur
+nginx-security.conf
+config-template.php
+backend-api-example.php
+security-logger-backend.php
+
+# Fichiers API de développement
+api/security-log.php

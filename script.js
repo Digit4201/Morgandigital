@@ -447,41 +447,157 @@ function initSecureThemeToggle() {
 // Utilisation de liens directs Stripe - pas besoin d'API de validation
 
 // ========================================
+// POPUP FLOTTANTE DE RÉDUCTION
+// ========================================
+function initFloatingOffer() {
+    console.log("Initialisation de la popup flottante");
+    
+    const floatingOffer = document.getElementById('floating-offer');
+    if (!floatingOffer) return;
+    
+    // Afficher la popup après 5 secondes
+    setTimeout(() => {
+        floatingOffer.style.display = 'block';
+        setTimeout(() => {
+            floatingOffer.classList.add('show');
+        }, 100);
+    }, 5000);
+    
+    // Timer de 15 minutes
+    let timeLeft = 15 * 60; // 15 minutes en secondes
+    const minutesSpan = document.getElementById('floating-minutes');
+    const secondsSpan = document.getElementById('floating-seconds');
+    
+    const timer = setInterval(() => {
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        
+        if (minutesSpan) minutesSpan.textContent = minutes.toString().padStart(2, '0');
+        if (secondsSpan) secondsSpan.textContent = seconds.toString().padStart(2, '0');
+        
+        timeLeft--;
+        
+        if (timeLeft < 0) {
+            clearInterval(timer);
+            floatingOffer.style.display = 'none';
+        }
+    }, 1000);
+    
+    // Bouton de fermeture
+    const closeBtn = floatingOffer.querySelector('.floating-close');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            floatingOffer.style.display = 'none';
+            clearInterval(timer);
+        });
+    }
+}
+
+// ========================================
+// EFFETS VISUELS
+// ========================================
+function initCursorEffects() {
+    console.log("Initialisation des effets de curseur");
+    
+    const cursor = document.querySelector('.cursor');
+    const cursorFollower = document.querySelector('.cursor-follower');
+    
+    if (!cursor || !cursorFollower) return;
+    
+    let mouseX = 0, mouseY = 0;
+    let followerX = 0, followerY = 0;
+    
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        
+        cursor.style.left = mouseX + 'px';
+        cursor.style.top = mouseY + 'px';
+    });
+    
+    function animateFollower() {
+        followerX += (mouseX - followerX) * 0.1;
+        followerY += (mouseY - followerY) * 0.1;
+        
+        cursorFollower.style.left = followerX + 'px';
+        cursorFollower.style.top = followerY + 'px';
+        
+        requestAnimationFrame(animateFollower);
+    }
+    animateFollower();
+    
+    // Hover effects
+    const hoverElements = document.querySelectorAll('a, button, .btn');
+    hoverElements.forEach(element => {
+        element.addEventListener('mouseenter', () => {
+            cursor.classList.add('hover');
+            cursorFollower.classList.add('hover');
+        });
+        
+        element.addEventListener('mouseleave', () => {
+            cursor.classList.remove('hover');
+            cursorFollower.classList.remove('hover');
+        });
+    });
+}
+
+function initScrollAnimations() {
+    console.log("Initialisation des animations de scroll");
+    
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-in');
+            }
+        });
+    }, observerOptions);
+    
+    // Observer les éléments à animer
+    const animateElements = document.querySelectorAll('.benefit-card, .portfolio-item, .process-step, .pricing-card');
+    animateElements.forEach(element => {
+        observer.observe(element);
+    });
+    
+    // Animation des cartes flottantes
+    const floatingCards = document.querySelectorAll('.floating-card');
+    floatingCards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.5}s`;
+    });
+}
+
+// ========================================
 // INITIALISATION DE L'APPLICATION
 // ========================================
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('Application sécurisée + Formspree initialisée');
+    console.log('🚀 Application Morgan Digital démarrée');
     
     try {
-        // Protection contre les attaques par iframe
-        if (window.top !== window.self) {
-            console.warn('Page chargée dans un iframe');
-            return;
+        // Fonctionnalités de base qui marchent
+        initFloatingOffer();
+        initCursorEffects();
+        initScrollAnimations();
+        
+        // Menu mobile simple
+        const mobileToggle = document.querySelector('.mobile-menu-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        if (mobileToggle && navMenu) {
+            mobileToggle.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+            });
         }
         
-        // Initialisation des modules
-        initLanguageSwitcher();
-        
-        // Formulaire de contact compatible Formspree
-        const contactForm = new FormspreeContactForm();
-        contactForm.init();
-        
-        // Système de paiement simplifié avec liens directs (géré par fix-payment-buttons.js)
-        
-        // Autres fonctionnalités sécurisées
-        initSecureUrgencyBanner();
-        initSecureThemeToggle();
-        // Countdown sécurisé basé sur le serveur
-        if (window.SecureCountdown) {
-            const secureCountdown = new window.SecureCountdown();
-            secureCountdown.init();
+        // Fermeture banner urgence
+        const urgencyClose = document.querySelector('.urgency-close');
+        if (urgencyClose) {
+            urgencyClose.addEventListener('click', () => {
+                document.querySelector('.urgency-banner').style.display = 'none';
+            });
         }
-        
-        // SUPPRIMÉ: Offre flottante avec timer côté client non sécurisé
-        
-        // SUPPRIMÉ: Gestionnaire de paiements avec API
-        // Les boutons utilisent maintenant des liens directs vers Stripe
-        // Gestion dans fix-payment-buttons.js
         
         console.log('✅ Application initialisée avec succès');
         

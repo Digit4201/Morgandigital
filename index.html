@@ -326,6 +326,7 @@
                 </div>
             </div>
         </section>
+        
         <section id="process" class="process">
             <div class="container">
                 <div class="section-header">
@@ -547,7 +548,7 @@
                             <div class="badge-text">Landing Pages created</div>
                         </div>
                         <div class="success-badge secondary">
-                            <div class="badge-number">78%</div>
+                            <div class="badge-number">37%</div>
                             <div class="badge-text">Average conversion rate</div>
                         </div>
                     </div>
@@ -628,9 +629,11 @@
             </div>
         </div>
     </footer>
+    
     <div id="language-switcher">
         <a href="index-fr.html" id="lang-btn" class="btn" title="Changer vers le français" aria-label="Switch to French">FR</a>
     </div>
+    
     <!-- Floating Offer Banner -->
     <div id="floating-offer" class="floating-offer">
         <div class="floating-offer-content">
@@ -654,16 +657,62 @@
     
     <div class="cursor"></div>
     <div class="cursor-follower"></div>
+    
     <script src="vendor/tsparticles.bundle.min.js"></script>
     <script src="security-monitor.js"></script>
     <script src="performance-optimizer.js"></script>
     <script src="secure-countdown.js"></script>
-    <!-- Script original (remplacé par version optimisée mobile) -->
-    <!-- <script src="script.js"></script> -->
-    <!-- Script optimisé mobile -->
-    <script src="script-mobile-optimized.js"></script>
-    <!-- Corrections temporaires -->
+    <script src="script.js"></script>
     <script src="fix-form.js"></script>
-    <script src="fix-payment-buttons.js"></script>\n    <!-- Debug mobile langue (temporaire) -->\n    <script src="mobile-lang-debug.js"></script>
+    <script src="fix-payment-buttons.js"></script>
+    
+    <script>
+    console.log("Script particules démarré");
+    console.log("tsParticles disponible :", typeof tsParticles);
+
+    function initParticlesFinal() {
+        console.log("initParticlesFinal appelée");
+        
+        if (typeof tsParticles !== 'undefined') {
+            console.log("tsParticles trouvé, initialisation...");
+            
+            tsParticles.load("particles-js", {
+                particles: {
+                    number: { value: 40 },
+                    color: { value: "#a78bfa" },
+                    shape: { type: "circle" },
+                    opacity: { value: 0.5 },
+                    size: { 
+                        value: 3,
+                        random: true
+                    },
+                    move: {
+                        enable: true,
+                        speed: 2
+                    },
+                    line_linked: {
+                        enable: true,
+                        distance: 150,
+                        color: "#a78bfa",
+                        opacity: 0.4,
+                        width: 1
+                    }
+                },
+                retina_detect: true
+            }).then(() => {
+                console.log("Particules chargées avec succès !");
+            }).catch((error) => {
+                console.error("Erreur particules:", error);
+            });
+        } else {
+            console.error("tsParticles non disponible !");
+        }
+    }
+
+    // Multiple tentatives comme dans le test qui marche
+    initParticlesFinal();
+    setTimeout(initParticlesFinal, 1000);
+    window.addEventListener('load', initParticlesFinal);
+    </script>
 </body>
 </html>
