@@ -2389,7 +2389,9 @@ textarea:focus-visible {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    z-index: 1001;
+    z-index: 9999; /* Z-index plus élevé pour être au-dessus de tout */
+    pointer-events: auto;
+    touch-action: manipulation;
 }
 
 #lang-btn {
@@ -2397,16 +2399,55 @@ textarea:focus-visible {
     color: white;
     border: none;
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    font-size: 1rem;
+    width: 60px; /* Augmenté pour mobile */
+    height: 60px; /* Augmenté pour mobile */
+    font-size: 1.1rem;
     font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+    transition: all 0.3s ease;
     cursor: pointer;
-    box-shadow: var(--shadow-lg);
-    transition: all var(--transition-base);
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
-#lang-btn:hover {
+#lang-btn:hover, #lang-btn:focus {
     background-color: var(--primary-dark);
     transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
+}
+
+#lang-btn:active {
+    transform: scale(0.95);
+}
+
+/* Optimisations mobile pour le bouton langue */
+@media (max-width: 768px) {
+    #language-switcher {
+        bottom: 80px; /* Plus haut pour éviter les zones de navigation mobile */
+        right: 15px;
+        z-index: 9999;
+    }
+    
+    #lang-btn {
+        width: 55px;
+        height: 55px;
+        font-size: 1rem;
+        box-shadow: 0 3px 10px rgba(124, 58, 237, 0.4);
+    }
+}
+
+@media (max-width: 480px) {
+    #language-switcher {
+        bottom: 100px; /* Encore plus haut sur très petits écrans */
+        right: 10px;
+    }
+    
+    #lang-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 0.9rem;
+    }
 }
