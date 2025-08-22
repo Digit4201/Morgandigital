@@ -1,0 +1,64 @@
+# ===================================
+# FICHIERS DE SÉCURITÉ À IGNORER
+# ===================================
+
+# Fichiers de configuration contenant des secrets
+.env
+config.php
+secrets/
+
+# Logs contenant des données sensibles
+logs/
+*.log
+
+# Fichiers temporaires
+tmp/
+temp/
+cache/
+
+# Sauvegardes
+*.backup
+*.bak
+backup/
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Node modules (si utilisé pour le build)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# PHP
+vendor/
+composer.lock
+composer.phar
+
+# Uploads et fichiers utilisateur
+uploads/
+user-content/
+
+# Tests
+coverage/
+.phpunit.result.cache
+
+# Certificats SSL locaux
+*.key
+*.pem
+*.crt
+ssl/
+
+# Fichiers de débogage
+debug.log
+error.log
+access.log

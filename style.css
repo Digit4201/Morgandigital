@@ -1,4 +1,384 @@
 /* ========================================
+   URGENCY BANNER
+======================================== */
+.urgency-banner {
+    background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+    color: white;
+    padding: 16px 0;
+    position: relative;
+    z-index: 1001;
+    border-bottom: 3px solid var(--primary-color);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.urgency-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+.urgency-text {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.urgency-icon {
+    font-size: 1.25rem;
+    background: var(--gradient-secondary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: subtleGlow 3s ease-in-out infinite;
+}
+
+@keyframes subtleGlow {
+    0%, 100% { filter: brightness(1); }
+    50% { filter: brightness(1.3); }
+}
+
+.urgency-date {
+    color: var(--accent-color);
+    font-weight: 600;
+    background: rgba(34, 211, 238, 0.1);
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 1px solid rgba(34, 211, 238, 0.3);
+}
+
+.urgency-countdown {
+    background: rgba(124, 58, 237, 0.15);
+    border: 1px solid rgba(124, 58, 237, 0.3);
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: var(--primary-light);
+    font-size: 0.9rem;
+}
+
+.urgency-separator {
+    color: rgba(255, 255, 255, 0.4);
+    font-weight: 300;
+    margin: 0 4px;
+}
+
+.urgency-close {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.2rem;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.urgency-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    transform: rotate(90deg);
+}
+
+.urgency-banner.hidden {
+    display: none;
+}
+
+.urgency-highlight {
+    background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-weight: 700;
+    animation: urgencyBlink 1.5s infinite;
+}
+
+@keyframes urgencyBlink {
+    0%, 50% { opacity: 1; }
+    75% { opacity: 0.7; }
+    100% { opacity: 1; }
+}
+
+/* ========================================
+   URGENCY BADGES ON PRICING CARDS
+======================================== */
+.urgency-badge {
+    position: absolute;
+    top: -15px;
+    left: 20px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    z-index: 10;
+    animation: urgencyShake 2s infinite;
+}
+
+.urgency-badge.starter {
+    background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+    color: white;
+}
+
+.urgency-badge.professional {
+    background: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+    color: white;
+}
+
+.urgency-badge.enterprise {
+    background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+    color: white;
+}
+
+@keyframes urgencyShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-2px); }
+    75% { transform: translateX(2px); }
+}
+
+/* Payment Info */
+.payment-info {
+    text-align: center;
+    margin-top: 8px;
+    font-size: 0.85rem;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+/* Scarcity Indicators */
+.scarcity-indicator {
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+    color: #92400e;
+    padding: 8px 12px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-top: 10px;
+    animation: scarcityPulse 2s infinite;
+    border: 2px solid #fcd34d;
+}
+
+.scarcity-icon {
+    margin-right: 4px;
+    font-size: 1rem;
+}
+
+@keyframes scarcityPulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.7);
+    }
+    50% {
+        transform: scale(1.02);
+        box-shadow: 0 0 0 8px rgba(251, 191, 36, 0);
+    }
+}
+
+/* ========================================
+   FLOATING OFFER BANNER
+======================================== */
+.floating-offer {
+    position: fixed !important;
+    top: 100px !important;
+    right: 20px !important;
+    max-width: 350px;
+    background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--primary-color);
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+    transform: translateX(100%);
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    animation: floatingGlow 3s ease-in-out infinite;
+}
+
+.floating-offer.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.floating-offer.hide {
+    transform: translateX(100%) scale(0.8);
+    opacity: 0;
+}
+
+@keyframes floatingGlow {
+    0%, 100% {
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3), 0 0 0 0 rgba(124, 58, 237, 0.4);
+    }
+    50% {
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4), 0 0 20px 5px rgba(124, 58, 237, 0.2);
+    }
+}
+
+.floating-offer-content {
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.floating-offer-text {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+}
+
+.floating-offer-badge {
+    background: var(--gradient-secondary);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    width: fit-content;
+    animation: badgePulse 2s infinite;
+}
+
+@keyframes badgePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.floating-offer-main {
+    color: white;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.floating-code {
+    background: rgba(34, 211, 238, 0.2);
+    color: var(--accent-color);
+    padding: 2px 6px;
+    border-radius: 6px;
+    font-family: 'Courier New', monospace;
+    font-weight: 700;
+    border: 1px solid rgba(34, 211, 238, 0.3);
+}
+
+.floating-timer {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.floating-offer-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+}
+
+.floating-btn-claim {
+    background: var(--gradient-secondary);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+}
+
+.floating-btn-claim:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(124, 58, 237, 0.5);
+}
+
+.floating-close {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.7);
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.floating-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    transform: rotate(90deg);
+}
+
+/* Responsive pour le floating banner */
+@media (max-width: 768px) {
+    .floating-offer {
+        top: 15px !important;
+        right: 15px;
+        left: 15px;
+        max-width: none;
+        border-radius: 12px;
+    }
+    
+    .floating-offer-content {
+        padding: 12px 16px;
+        gap: 12px;
+    }
+    
+    .floating-offer-text {
+        gap: 4px;
+    }
+    
+    .floating-offer-main {
+        font-size: 0.9rem;
+    }
+    
+    .floating-btn-claim {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .floating-offer {
+        top: 10px !important;
+        margin-top: 0;
+    }
+    
+    .floating-offer-content {
+        padding: 10px 12px;
+        gap: 8px;
+    }
+    
+    .floating-offer-text {
+        gap: 3px;
+    }
+    
+    .floating-offer-main {
+        font-size: 0.85rem;
+    }
+    
+    .floating-offer-badge {
+        font-size: 0.65rem;
+    }
+    
+    .floating-timer {
+        font-size: 0.75rem;
+    }
+}
+
+/* ========================================
    RESET & VARIABLES
 ======================================== */
 :root {
@@ -50,6 +430,69 @@
     --radius-lg: 1.25rem;
     --radius-xl: 2rem;
     --radius-full: 9999px;
+}
+
+/* ========================================
+   DARK MODE STYLES (ORIGINAL SYSTEM)
+======================================== */
+body.dark-mode {
+    --primary-color: #a78bfa;
+    --primary-dark: #c084fc;
+    --primary-light: #d8b4fe;
+    --secondary-color: #f472b6;
+    --accent-color: #67e8f9;
+    --text-dark: #f8fafc;
+    --text-medium: #cbd5e1;
+    --text-light: #94a3b8;
+    --bg-white: #1e293b;
+    --bg-light: #0f172a;
+    --bg-gray: #334155;
+    --shadow-glow: 0 0 40px -10px var(--primary-light);
+}
+
+/* Theme Toggle Button (Original Style) */
+.theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-dark);
+    position: relative;
+    width: 40px;
+    height: 40px;
+    transition: color var(--transition-base);
+}
+
+.theme-toggle:hover {
+    color: var(--primary-color);
+}
+
+.theme-toggle svg {
+    position: absolute;
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.3s ease;
+}
+
+.theme-toggle .sun-icon {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+}
+
+.theme-toggle .moon-icon {
+    transform: scale(0) rotate(90deg);
+    opacity: 0;
+}
+
+body.dark-mode .theme-toggle .sun-icon {
+    transform: scale(0) rotate(-90deg);
+    opacity: 0;
+}
+
+body.dark-mode .theme-toggle .moon-icon {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
 }
 
 /* ========================================
@@ -1742,6 +2185,30 @@ body.dark-mode {
 
     .cursor, .cursor-follower {
         display: none;
+    }
+    
+    /* Bannière d'urgence responsive */
+    .urgency-banner {
+        padding: 12px 0;
+    }
+    
+    .urgency-text {
+        font-size: 0.9rem;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .urgency-countdown {
+        font-size: 0.85rem;
+        padding: 6px 10px;
+    }
+    
+    .urgency-close {
+        width: 28px;
+        height: 28px;
+        font-size: 1rem;
     }
 }
 

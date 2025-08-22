@@ -1,0 +1,14 @@
+{
+  "name": "landing-page-morgan-digital",
+  "version": "1.0.0",
+  "description": "High conversion landing page for Morgan Digital",
+  "main": "script.js",
+  "scripts": {
+    "minify:js": "terser script.js -o script.min.js -c -m",
+    "minify:css": "cssnano style.css > style.min.css",
+    "build": "npm run minify:js && npm run minify:css"
+  },
+  "keywords": [],
+  "author": "Morgan Heldt",
+  "license": "ISC"
+}

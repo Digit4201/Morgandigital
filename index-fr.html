@@ -12,14 +12,14 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.morgandigital.fr/index-fr.html">
-    <meta property="og:title" content="Pages de Destination à Haute Conversion pour Coachs & Formateurs | LandingPro">
+    <meta property="og:title" content="Pages de Destination à Haute Conversion pour Coachs & Formateurs | Morgan Digital">
     <meta property="og:description" content="Boostez vos conversions avec des pages de destination sur mesure. Spécialiste pour les coachs et formateurs en ligne.">
     <meta property="og:image" content="https://www.morgandigital.fr/og-image.jpg">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://www.morgandigital.fr/index-fr.html">
-    <meta property="twitter:title" content="Pages de Destination à Haute Conversion pour Coachs & Formateurs | LandingPro">
+    <meta property="twitter:title" content="Pages de Destination à Haute Conversion pour Coachs & Formateurs | Morgan Digital">
     <meta property="twitter:description" content="Boostez vos conversions avec des pages de destination sur mesure. Spécialiste pour les coachs et formateurs en ligne.">
     <meta property="twitter:image" content="https://www.morgandigital.fr/twitter-image.jpg">
 
@@ -29,25 +29,34 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- CSS -->
-    <link rel="stylesheet" href="style.min.css">
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://formspree.io https://js.stripe.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://formspree.io https://api.stripe.com; frame-src https://js.stripe.com; object-src 'none'; base-uri 'self';">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="security-styles.css">
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "ProfessionalService",
-      "name": "LandingPro",
+      "name": "Morgan Digital",
       "image": "https://www.morgandigital.fr/logo.png",
       "@id": "",
       "url": "https://www.morgandigital.fr/index-fr.html",
-      "telephone": "+33600000000",
+      "telephone": "+33768123456",
       "email": "heldt.morgan@proton.me",
       "description": "Création de pages de destination à haute conversion pour les coachs et formateurs en ligne.",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "123 Rue de la Conversion",
+        "streetAddress": "15 Avenue de la Conversion",
         "addressLocality": "Paris",
-        "postalCode": "75001",
+        "postalCode": "75009",
         "addressCountry": "FR"
       },
       "openingHoursSpecification": {
@@ -67,6 +76,25 @@
 </head>
 <body>
     <a href="#main-content" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;">Aller au contenu principal</a>
+    
+    <!-- Urgency Banner -->
+    <div class="urgency-banner">
+        <div class="container">
+            <div class="urgency-content">
+                <div class="urgency-text">
+                    <span class="urgency-icon">⚡</span>
+                    <span><strong>Promotion exceptionnelle</strong> • Réduction jusqu'au</span>
+                    <span class="urgency-date" id="urgency-date">31 Août</span>
+                    <span class="urgency-separator">•</span>
+                    <span class="urgency-countdown" id="countdown">
+                        <span id="days">7</span>j <span id="hours">12</span>h <span id="minutes">45</span>min
+                    </span>
+                </div>
+                <button class="urgency-close" aria-label="Fermer la bannière">×</button>
+            </div>
+        </div>
+    </div>
+    
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
@@ -86,8 +114,20 @@
                     <li><a href="#contact" class="btn-nav">Devis Gratuit</a></li>
                     <li>
                         <button class="theme-toggle" aria-label="Changer de thème">
-                            <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-                            <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                            <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="5"></circle>
+                                <line x1="12" y1="1" x2="12" y2="3"></line>
+                                <line x1="12" y1="21" x2="12" y2="23"></line>
+                                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                                <line x1="1" y1="12" x2="3" y2="12"></line>
+                                <line x1="21" y1="12" x2="23" y2="12"></line>
+                                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                            </svg>
+                            <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                            </svg>
                         </button>
                     </li>
                 </ul>
@@ -346,42 +386,47 @@
                     <span class="section-badge">Nos Forfaits</span>
                     <h2 class="section-title">Choisissez votre <span class="gradient-text">forfait idéal</span></h2>
                     <p class="section-subtitle">
-                        Landing pages professionnelles à prix imbattables. Offre limitée !
+                        🔥 <strong>OFFRE FLASH -40%</strong> 🔥 Plus que <span id="pricing-countdown" class="urgency-highlight">7 jours</span> pour en profiter !
                     </p>
                 </div>
 
                 <div class="pricing-grid">
                     <!-- Plan Débutant -->
                     <div class="pricing-card">
+                        <div class="urgency-badge starter">⚡ DERNIERS JOURS</div>
                         <div class="pricing-header">
                             <h3>Débutant</h3>
                             <p class="pricing-subtitle">Parfait pour commencer</p>
                         </div>
                         <div class="pricing-price">
-                            <span class="price-old">€599</span>
-                            <span class="price-current">€399</span>
+                            <span class="price-old">€598</span>
+                            <span class="price-current">€359</span>
                             <span class="price-period">Paiement unique</span>
                         </div>
                         <ul class="pricing-features">
                             <li>✓ Landing Page Sur-Mesure</li>
                             <li>✓ Responsive Mobile</li>
                             <li>✓ SEO de Base</li>
-                            <li>✓ Livraison 48h</li>
+                            <li>✓ Livraison 72h</li>
                             <li>✓ 3 Révisions</li>
                         </ul>
-                        <a href="#contact" class="btn btn-primary pricing-btn">Commencer</a>
+                        <a href="https://buy.stripe.com/bJecN68XF8Lr6KcbKTbEA02" target="_blank" rel="noopener noreferrer" class="btn btn-primary pricing-btn">
+                            🚀 Commande immédiate €359
+                        </a>
+                        <p class="payment-info">💳 Paiement sécurisé par Stripe</p>
                     </div>
 
                     <!-- Plan Professionnel - Le Plus Populaire -->
                     <div class="pricing-card popular">
                         <div class="popular-badge">Le Plus Populaire</div>
+                        <div class="urgency-badge professional">🔥 HOT DEAL -40%</div>
                         <div class="pricing-header">
                             <h3>Professionnel</h3>
                             <p class="pricing-subtitle">Pour les entreprises sérieuses</p>
                         </div>
                         <div class="pricing-price">
-                            <span class="price-old">€1,199</span>
-                            <span class="price-current">€799</span>
+                            <span class="price-old">€1,198</span>
+                            <span class="price-current">€719</span>
                             <span class="price-period">Paiement unique</span>
                         </div>
                         <ul class="pricing-features">
@@ -389,22 +434,26 @@
                             <li>✓ Animations Avancées</li>
                             <li>✓ Package SEO Complet</li>
                             <li>✓ Intégration Analytics</li>
-                            <li>✓ Livraison Express 24h</li>
-                            <li>✓ Révisions Illimitées</li>
+                            <li>✓ Livraison Express 72h</li>
+                            <li>✓ 5 Révisions </li>
                             <li>✓ Support 30 jours</li>
                         </ul>
-                        <a href="#contact" class="btn btn-primary pricing-btn">Choisir Professionnel</a>
+                        <a href="https://buy.stripe.com/bJedRagq79Pv0lOg19bEA03" target="_blank" rel="noopener noreferrer" class="btn btn-primary pricing-btn">
+                            ⚡ Payer maintenant €719
+                        </a>
+                        <p class="payment-info">💳 Paiement sécurisé par Stripe</p>
                     </div>
 
                     <!-- Plan Entreprise -->
                     <div class="pricing-card">
+                        <div class="urgency-badge enterprise">💎 VIP EXCLUSIVE</div>
                         <div class="pricing-header">
                             <h3>Entreprise</h3>
                             <p class="pricing-subtitle">Solution complète</p>
                         </div>
                         <div class="pricing-price">
-                            <span class="price-old">€1,999</span>
-                            <span class="price-current">€1,299</span>
+                            <span class="price-old">€1,998</span>
+                            <span class="price-current">€1,199</span>
                             <span class="price-period">Paiement unique</span>
                         </div>
                         <ul class="pricing-features">
@@ -413,10 +462,13 @@
                             <li>✓ Analytics Avancées</li>
                             <li>✓ Setup Email Marketing</li>
                             <li>✓ Support Prioritaire</li>
-                            <li>✓ Livraison Ultra-rapide 12h</li>
-                            <li>✓ Garantie 90 jours</li>
+                            <li>✓ Garantie 90 jours</li>    
+                            <li>✓ Livraison Express 48h</li>
                         </ul>
-                        <a href="#contact" class="btn btn-primary pricing-btn">Aller Entreprise</a>
+                        <a href="https://buy.stripe.com/dRmeVe4HpgdT4C44irbEA04" target="_blank" rel="noopener noreferrer" class="btn btn-primary pricing-btn">
+                            👑 Commande VIP €1,199
+                        </a>
+                        <p class="payment-info">💳 Paiement sécurisé par Stripe</p>
                     </div>
                 </div>
             </div>
@@ -461,15 +513,31 @@
                             </div>
                         </div>
 
-                        <form id="contact-form" action="https://formspree.io/f/mblkeoqb" method="POST" class="cta-form">
+                        <form id="contact-form" action="https://formspree.io/f/mblkeoqb" method="POST" class="cta-form" novalidate>
+                            <!-- Sécurité: Champ honeypot caché pour la protection anti-spam -->
+                            <input type="text" name="_honeypot" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" tabindex="-1" autocomplete="off" aria-hidden="true">
+                            
+                            <!-- Sécurité: Protection CSRF -->
+                            <input type="hidden" name="_csrf" id="csrf-token" value="">
+                            <input type="hidden" name="_timestamp" id="form-timestamp" value="">
+                            
                             <div class="form-group">
-                                <input type="text" name="name" placeholder="Votre nom" required>
-                                <input type="email" name="email" placeholder="Votre email" required>
+                                <input type="text" name="name" placeholder="Votre nom" required maxlength="50" autocomplete="name"
+                                       pattern="[a-zA-ZÀ-ÿ\s\-']{2,50}"
+                                       title="Le nom doit contenir uniquement des lettres, espaces, tirets et apostrophes (2-50 caractères)">
+                                <input type="email" name="email" placeholder="Votre email" required maxlength="254" autocomplete="email"
+                                       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                       title="Veuillez saisir une adresse email valide">
                             </div>
                             <div class="form-group">
-                                <textarea name="message" placeholder="Votre message" required></textarea>
+                                <textarea name="message" placeholder="Votre message" required minlength="10" maxlength="2000"
+                                          title="Le message doit contenir entre 10 et 2000 caractères"></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-large">Envoyer le message</button>
+                            <!-- Sécurité: Limitation du taux de soumission -->
+                            <button type="submit" class="btn btn-primary btn-large" data-submit-limit="3">Envoyer le message</button>
+                            
+                            <!-- Sécurité: Conteneur pour les messages de validation -->
+                            <div class="form-messages" role="alert" aria-live="polite"></div>
                         </form>
                     </div>
                     
@@ -497,19 +565,19 @@
                     <p>Expert en création de Landing Pages à haute conversion pour les coachs et formateurs en ligne.</p>
                     <div class="social-links">
                         <a href="#" aria-label="LinkedIn">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                                 <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
                                 <rect x="2" y="9" width="4" height="12"/>
                                 <circle cx="4" cy="4" r="2"/>
                             </svg>
                         </a>
-                        <a href="#" aria-label="Twitter">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <a href="https://twitter.com/morgan_digital1" aria-label="Twitter">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                                 <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
                             </svg>
                         </a>
                         <a href="https://www.instagram.com/morgan_digital1/" aria-label="Instagram">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
                                 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
                                 <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
@@ -542,24 +610,11 @@
                     <h4>Contact</h4>
                     <ul class="footer-contact">
                         <li>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                                 <polyline points="22,6 12,13 2,6"/>
                             </svg>
                             heldt.morgan@proton.me
-                        </li>
-                        <li>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                            </svg>
-                            +33 6 XX XX XX XX
-                        </li>
-                        <li>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                                <circle cx="12" cy="10" r="3"/>
-                            </svg>
-                            Paris, France
                         </li>
                     </ul>
                 </div>
@@ -576,9 +631,37 @@
     <div id="language-switcher">
         <a href="index.html" id="lang-btn" class="btn">EN</a>
     </div>
+    
+    <!-- Floating Offer Banner -->
+    <div id="floating-offer" class="floating-offer">
+        <div class="floating-offer-content">
+            <div class="floating-offer-text">
+                <span class="floating-offer-badge">CODE EXCLUSIF</span>
+                <span class="floating-offer-main">
+                    <strong>-50% SUPPLÉMENTAIRES</strong> avec le code <span class="floating-code">SAVE50</span>
+                </span>
+                <span class="floating-timer">
+                    Expire dans <span id="floating-minutes">15</span>:<span id="floating-seconds">00</span>
+                </span>
+            </div>
+            <div class="floating-offer-actions">
+                <a href="#pricing" class="floating-btn-claim">
+                    🎉 J'en profite !
+                </a>
+                <button class="floating-close" aria-label="Fermer">&times;</button>
+            </div>
+        </div>
+    </div>
+    
     <div class="cursor"></div>
     <div class="cursor-follower"></div>
     <script src="vendor/tsparticles.bundle.min.js"></script>
-    <script src="script.min.js"></script>
+    <script src="security-monitor.js"></script>
+    <script src="performance-optimizer.js"></script>
+    <script src="secure-countdown.js"></script>
+    <script src="script.js"></script>
+    <!-- Corrections temporaires -->
+    <script src="fix-form.js"></script>
+    <script src="fix-payment-buttons.js"></script>
 </body>
 </html>

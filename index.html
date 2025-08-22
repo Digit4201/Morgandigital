@@ -29,7 +29,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- CSS -->
-    <link rel="stylesheet" href="style.min.css">
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://formspree.io https://js.stripe.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://formspree.io https://api.stripe.com; frame-src https://js.stripe.com; object-src 'none'; base-uri 'self';">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="security-styles.css">
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
@@ -67,6 +76,25 @@
 </head>
 <body>
     <a href="#main-content" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;">Skip to main content</a>
+    
+    <!-- Urgency Banner -->
+    <div class="urgency-banner">
+        <div class="container">
+            <div class="urgency-content">
+                <div class="urgency-text">
+                    <span class="urgency-icon">⚡</span>
+                    <span><strong>Exceptional Promotion</strong> • Discount until</span>
+                    <span class="urgency-date" id="urgency-date">August 31st</span>
+                    <span class="urgency-separator">•</span>
+                    <span class="urgency-countdown" id="countdown">
+                        <span id="days">7</span>d <span id="hours">12</span>h <span id="minutes">45</span>min
+                    </span>
+                </div>
+                <button class="urgency-close" aria-label="Close banner">×</button>
+            </div>
+        </div>
+    </div>
+    
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
@@ -86,8 +114,20 @@
                     <li><a href="#contact" class="btn-nav">Free Quote</a></li>
                     <li>
                         <button class="theme-toggle" aria-label="Change theme">
-                            <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-                            <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                            <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="5"></circle>
+                                <line x1="12" y1="1" x2="12" y2="3"></line>
+                                <line x1="12" y1="21" x2="12" y2="23"></line>
+                                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                                <line x1="1" y1="12" x2="3" y2="12"></line>
+                                <line x1="21" y1="12" x2="23" y2="12"></line>
+                                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                            </svg>
+                            <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                            </svg>
                         </button>
                     </li>
                 </ul>
@@ -346,42 +386,47 @@
                     <span class="section-badge">Our Packages</span>
                     <h2 class="section-title">Choose your <span class="gradient-text">perfect plan</span></h2>
                     <p class="section-subtitle">
-                        Professional landing pages at unbeatable prices. Limited time offer!
+                        🔥 <strong>FLASH OFFER -40%</strong> 🔥 Only <span id="pricing-countdown" class="urgency-highlight">7 days</span> left to benefit!
                     </p>
                 </div>
 
                 <div class="pricing-grid">
                     <!-- Plan Starter -->
                     <div class="pricing-card">
+                        <div class="urgency-badge starter">⚡ LAST DAYS</div>
                         <div class="pricing-header">
                             <h3>Starter</h3>
                             <p class="pricing-subtitle">Perfect for getting started</p>
                         </div>
                         <div class="pricing-price">
-                            <span class="price-old">€599</span>
-                            <span class="price-current">€399</span>
+                            <span class="price-old">€598</span>
+                            <span class="price-current">€359</span>
                             <span class="price-period">One-time payment</span>
                         </div>
                         <ul class="pricing-features">
                             <li>✓ Custom Landing Page</li>
                             <li>✓ Mobile Responsive</li>
                             <li>✓ Basic SEO Optimization</li>
-                            <li>✓ 48h Delivery</li>
+                            <li>✓ 72h Delivery</li>
                             <li>✓ 3 Revisions</li>
                         </ul>
-                        <a href="#contact" class="btn btn-primary pricing-btn">Get Started</a>
+                        <a href="https://buy.stripe.com/bJecN68XF8Lr6KcbKTbEA02" target="_blank" rel="noopener noreferrer" class="btn btn-primary pricing-btn">
+                            🚀 Order immediately €359
+                        </a>
+                        <p class="payment-info">💳 Secure payment by Stripe</p>
                     </div>
 
                     <!-- Plan Professional - Most Popular -->
                     <div class="pricing-card popular">
                         <div class="popular-badge">Most Popular</div>
+                        <div class="urgency-badge professional">🔥 HOT DEAL -40%</div>
                         <div class="pricing-header">
                             <h3>Professional</h3>
                             <p class="pricing-subtitle">For serious businesses</p>
                         </div>
                         <div class="pricing-price">
-                            <span class="price-old">€1,199</span>
-                            <span class="price-current">€799</span>
+                            <span class="price-old">€1,198</span>
+                            <span class="price-current">€719</span>
                             <span class="price-period">One-time payment</span>
                         </div>
                         <ul class="pricing-features">
@@ -389,22 +434,26 @@
                             <li>✓ Advanced Animations</li>
                             <li>✓ Complete SEO Package</li>
                             <li>✓ Analytics Integration</li>
-                            <li>✓ 24h Express Delivery</li>
-                            <li>✓ Unlimited Revisions</li>
+                            <li>✓ 72h Express Delivery</li>
+                            <li>✓ 5 Revisions</li>
                             <li>✓ 30-day Support</li>
                         </ul>
-                        <a href="#contact" class="btn btn-primary pricing-btn">Choose Professional</a>
+                        <a href="https://buy.stripe.com/bJedRagq79Pv0lOg19bEA03" target="_blank" rel="noopener noreferrer" class="btn btn-primary pricing-btn">
+                            ⚡ Pay now €719
+                        </a>
+                        <p class="payment-info">💳 Secure payment by Stripe</p>
                     </div>
 
                     <!-- Plan Enterprise -->
                     <div class="pricing-card">
+                        <div class="urgency-badge enterprise">💎 VIP EXCLUSIVE</div>
                         <div class="pricing-header">
                             <h3>Enterprise</h3>
                             <p class="pricing-subtitle">Complete solution</p>
                         </div>
                         <div class="pricing-price">
-                            <span class="price-old">€1,999</span>
-                            <span class="price-current">€1,299</span>
+                            <span class="price-old">€1,998</span>
+                            <span class="price-current">€1,199</span>
                             <span class="price-period">One-time payment</span>
                         </div>
                         <ul class="pricing-features">
@@ -413,10 +462,13 @@
                             <li>✓ Advanced Analytics</li>
                             <li>✓ Email Marketing Setup</li>
                             <li>✓ Priority Support</li>
-                            <li>✓ 12h Ultra-fast Delivery</li>
+                            <li>✓ 48h Ultra-fast Delivery</li>
                             <li>✓ 90-day Warranty</li>
                         </ul>
-                        <a href="#contact" class="btn btn-primary pricing-btn">Go Enterprise</a>
+                        <a href="https://buy.stripe.com/dRmeVe4HpgdT4C44irbEA04" target="_blank" rel="noopener noreferrer" class="btn btn-primary pricing-btn">
+                            👑 VIP Order €1,199
+                        </a>
+                        <p class="payment-info">💳 Secure payment by Stripe</p>
                     </div>
                 </div>
             </div>
@@ -461,18 +513,31 @@
                             </div>
                         </div>
 
-                        <form id="contact-form" action="https://formspree.io/f/mblkeoqb" method="POST" class="cta-form">
-                            <!-- Champ honeypot caché pour la protection anti-spam -->
-                            <input type="text" name="_honeypot" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" tabindex="-1" autocomplete="nope">
+                        <form id="contact-form" action="https://formspree.io/f/mblkeoqb" method="POST" class="cta-form" novalidate>
+                            <!-- Security: Hidden honeypot field for anti-spam protection -->
+                            <input type="text" name="_honeypot" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" tabindex="-1" autocomplete="off" aria-hidden="true">
+                            
+                            <!-- Security: CSRF Protection -->
+                            <input type="hidden" name="_csrf" id="csrf-token" value="">
+                            <input type="hidden" name="_timestamp" id="form-timestamp" value="">
                             
                             <div class="form-group">
-                                <input type="text" name="name" placeholder="Your name" required maxlength="50" autocomplete="name">
-                                <input type="email" name="email" placeholder="Your email" required maxlength="254" autocomplete="email">
+                                <input type="text" name="name" placeholder="Your name" required maxlength="50" autocomplete="name" 
+                                       pattern="[a-zA-ZÀ-ÿ\s\-']{2,50}" 
+                                       title="Name must contain only letters, spaces, hyphens and apostrophes (2-50 characters)">
+                                <input type="email" name="email" placeholder="Your email" required maxlength="254" autocomplete="email"
+                                       pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                                       title="Please enter a valid email address">
                             </div>
                             <div class="form-group">
-                                <textarea name="message" placeholder="Your message" required minlength="10" maxlength="2000"></textarea>
+                                <textarea name="message" placeholder="Your message" required minlength="10" maxlength="2000"
+                                          title="Message must be between 10 and 2000 characters"></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-large">Send message</button>
+                            <!-- Security: Added rate limiting attributes -->
+                            <button type="submit" class="btn btn-primary btn-large" data-submit-limit="3">Send message</button>
+                            
+                            <!-- Security: Form validation messages container -->
+                            <div class="form-messages" role="alert" aria-live="polite"></div>
                         </form>
                     </div>
                     
@@ -500,19 +565,19 @@
                     <p>Expert in creating high-conversion Landing Pages for online coaches and trainers.</p>
                     <div class="social-links">
                         <a href="https://www.linkedin.com/in/morgan-heldt/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                                 <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
                                 <rect x="2" y="9" width="4" height="12"/>
                                 <circle cx="4" cy="4" r="2"/>
                             </svg>
                         </a>
                         <a href="https://twitter.com/morgan_digital1" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                                 <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
                             </svg>
                         </a>
                         <a href="https://www.instagram.com/morgan_digital1/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
                                 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
                                 <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
@@ -545,24 +610,11 @@
                     <h4>Contact</h4>
                     <ul class="footer-contact">
                         <li>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                                 <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                                 <polyline points="22,6 12,13 2,6"/>
                             </svg>
                             heldt.morgan@proton.me
-                        </li>
-                        <li>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                            </svg>
-                            +33 7 68 12 34 56
-                        </li>
-                        <li>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                                <circle cx="12" cy="10" r="3"/>
-                            </svg>
-                            Paris, France
                         </li>
                     </ul>
                 </div>
@@ -579,9 +631,36 @@
     <div id="language-switcher">
         <a href="index-fr.html" id="lang-btn" class="btn">FR</a>
     </div>
+    <!-- Floating Offer Banner -->
+    <div id="floating-offer" class="floating-offer">
+        <div class="floating-offer-content">
+            <div class="floating-offer-text">
+                <span class="floating-offer-badge">EXCLUSIVE CODE</span>
+                <span class="floating-offer-main">
+                    <strong>EXTRA -50% OFF</strong> with code <span class="floating-code">SAVE50</span>
+                </span>
+                <span class="floating-timer">
+                    Expires in <span id="floating-minutes">15</span>:<span id="floating-seconds">00</span>
+                </span>
+            </div>
+            <div class="floating-offer-actions">
+                <a href="#pricing" class="floating-btn-claim">
+                    🎉 Claim Now!
+                </a>
+                <button class="floating-close" aria-label="Close">&times;</button>
+            </div>
+        </div>
+    </div>
+    
     <div class="cursor"></div>
     <div class="cursor-follower"></div>
     <script src="vendor/tsparticles.bundle.min.js"></script>
-    <script src="script.min.js"></script>
+    <script src="security-monitor.js"></script>
+    <script src="performance-optimizer.js"></script>
+    <script src="secure-countdown.js"></script>
+    <script src="script.js"></script>
+    <!-- Corrections temporaires -->
+    <script src="fix-form.js"></script>
+    <script src="fix-payment-buttons.js"></script>
 </body>
 </html>
