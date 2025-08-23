@@ -657,12 +657,30 @@
     <div class="cursor"></div>
     <div class="cursor-follower"></div>
     
-    <script src="vendor/tsparticles.bundle.min.js"></script>
-    <script src="security-monitor.js"></script>
+    <!-- Scripts essentiels (toujours chargés) -->
     <script src="secure-countdown.js"></script>
     <script src="script.js"></script>
     <script src="fix-form.js"></script>
     <script src="fix-payment-buttons.js"></script>
-    <script src="particles-init.js"></script>
+    
+    <!-- Scripts optionnels pour desktop -->
+    <script>
+    const isMobile = window.innerWidth <= 768 || /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    if (!isMobile) {
+        // Charger les scripts lourds seulement sur desktop
+        const desktopScripts = [
+            'vendor/tsparticles.bundle.min.js',
+            'security-monitor.js',
+            'particles-init.js'
+        ];
+        
+        desktopScripts.forEach(src => {
+            const script = document.createElement('script');
+            script.src = src;
+            document.body.appendChild(script);
+        });
+    }
+    </script>
 </body>
 </html>
