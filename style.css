@@ -195,9 +195,9 @@
    FLOATING OFFER BANNER
 ======================================== */
 .floating-offer {
-    position: fixed !important;
-    top: 100px !important;
-    right: 20px !important;
+    position: fixed;
+    top: 100px;
+    right: 20px;
     max-width: 350px;
     background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
     backdrop-filter: blur(10px);
@@ -333,7 +333,44 @@
 /* Responsive pour le floating banner */
 @media (max-width: 768px) {
     .floating-offer {
-        display: none !important; /* Masquer complètement sur mobile */
+        position: fixed !important;
+        top: 80px !important;
+        right: 10px !important;
+        left: 10px !important;
+        max-width: none;
+    }
+    
+    .floating-offer-content {
+        padding: 12px 16px;
+        gap: 12px;
+    }
+    
+    .floating-offer-text {
+        gap: 4px;
+    }
+    
+    .floating-offer-badge {
+        font-size: 0.65rem;
+        padding: 3px 6px;
+    }
+    
+    .floating-offer-main {
+        font-size: 0.85rem;
+    }
+    
+    .floating-timer {
+        font-size: 0.75rem;
+    }
+    
+    .floating-btn-claim {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+    
+    .floating-close {
+        width: 20px;
+        height: 20px;
+        font-size: 0.8rem;
     }
 }
 
@@ -881,11 +918,12 @@ body.dark-mode .hero::before {
 
 .hero-content {
     display: grid;
-    grid-template-columns: 1.2fr 1fr;
+    grid-template-columns: 1fr;
     gap: 4rem;
     align-items: center;
     position: relative;
     z-index: 1;
+    text-align: center;
 }
 
 .badge {
@@ -925,6 +963,8 @@ body.dark-mode .hero::before {
     color: var(--text-medium);
     margin-bottom: 2.5rem;
     max-width: 550px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .hero-cta {
@@ -937,6 +977,7 @@ body.dark-mode .hero::before {
     display: flex;
     gap: 3rem;
     margin-top: 1rem;
+    justify-content: center;
 }
 
 .stat {
@@ -956,12 +997,7 @@ body.dark-mode .hero::before {
 }
 
 .hero-visual {
-    position: relative;
-    perspective: 1000px;
-    z-index: 1;
-    padding: 30px 0; /* Add vertical padding */
-    overflow: hidden; /* Éviter les débordements des animations */
-    width: 100%;
+    display: none !important;
 }
 
 .hero-image-wrapper {
@@ -1052,21 +1088,7 @@ body.dark-mode .browser-dot {
 }
 
 .floating-card {
-    position: absolute;
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    padding: 1rem 1.5rem;
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-xl);
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    font-size: 0.875rem;
-    font-weight: 600;
-    z-index: 10;
-    border: 1px solid rgba(255,255,255,0.2);
-    transition: background-color var(--transition-base);
+    display: none !important;
 }
 
 body.dark-mode .floating-card {
