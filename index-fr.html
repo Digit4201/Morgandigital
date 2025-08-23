@@ -23,10 +23,22 @@
     <meta property="twitter:description" content="Boostez vos conversions avec des pages de destination sur mesure. Spécialiste pour les coachs et formateurs en ligne.">
     <meta property="twitter:image" content="https://www.morgandigital.fr/twitter-image.jpg">
 
-    <!-- Google Fonts -->
+    <!-- DNS Prefetch pour accélérer les requêtes -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="dns-prefetch" href="//formspree.io">
+    <link rel="dns-prefetch" href="//js.stripe.com">
+    
+    <!-- Préconnexion optimisée pour les fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts avec display=swap pour éviter FOIT -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Précharge des fonts les plus importantes -->
+    <link rel="preload" href="https://fonts.gstatic.com/s/poppins/v20/pxiEyp8kv8JHgFVrJJfecnFHGPc.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://fonts.gstatic.com/s/montserrat/v25/JTUSjIg1_i6t8kCHKm459WlhyyTh89Y.woff2" as="font" type="font/woff2" crossorigin>
     
     <!-- CSS -->
     <!-- Security Headers -->
@@ -138,7 +150,7 @@
     <main id="main-content">
         <!-- Hero Section -->
         <header class="hero">
-            <!-- Particules désactivées pour compatibilité mobile -->
+            <div id="particles-js"></div>
             <div class="container">
                 <div class="hero-content">
                     <div class="hero-text">
@@ -655,7 +667,49 @@
     
     <div class="cursor"></div>
     <div class="cursor-follower"></div>
+    
+    <!-- Scripts critiques chargés immédiatement -->
     <script src="script.js"></script>
     <script src="fix-form.js"></script>
+    
+    <!-- Scripts non-critiques chargés de façon asynchrone -->
+    <script>
+    // Fonction pour charger les scripts de façon asynchrone
+    function loadScript(src, callback) {
+        const script = document.createElement('script');
+        script.src = src;
+        script.async = true;
+        if (callback) script.onload = callback;
+        document.head.appendChild(script);
+    }
+
+    // Charge les scripts non-critiques après le chargement initial
+    window.addEventListener('load', function() {
+        // Délai pour s'assurer que la page critique est rendue
+        setTimeout(function() {
+            // Scripts d'amélioration (non-critiques)
+            loadScript('vendor/tsparticles.bundle.min.js', function() {
+                loadScript('particles-init.js');
+            });
+            loadScript('security-monitor.js');
+            loadScript('performance-optimizer.js');
+            loadScript('secure-countdown.js');
+            loadScript('fix-payment-buttons.js');
+        }, 100);
+    });
+
+    // Précharge les scripts au survol pour une meilleure UX
+    document.addEventListener('DOMContentLoaded', function() {
+        const criticalElements = document.querySelectorAll('a[href="#pricing"], .pricing-btn, .hero-cta');
+        criticalElements.forEach(function(element) {
+            element.addEventListener('mouseenter', function() {
+                if (!window.scriptsPreloaded) {
+                    loadScript('fix-payment-buttons.js');
+                    window.scriptsPreloaded = true;
+                }
+            });
+        });
+    });
+    </script>
 </body>
 </html>
