@@ -2440,11 +2440,6 @@ body.dark-mode {
         overflow: hidden;
     }
     
-    /* Désactiver particules sur mobile pour les performances */
-    #particles-js {
-        display: none !important;
-    }
-    
     .floating-card {
         position: static;
         display: block;
