@@ -333,99 +333,13 @@
 /* Responsive pour le floating banner */
 @media (max-width: 768px) {
     .floating-offer {
-        top: 80px !important; /* Plus bas pour ne pas chevaucher avec la bannière d'urgence */
-        right: 15px;
-        left: 15px;
-        max-width: none;
-        border-radius: 12px;
-        z-index: 900; /* Z-index plus bas que la navbar */
-        position: fixed;
-    }
-    
-    .floating-offer-content {
-        padding: 14px 18px;
-        gap: 14px;
-        align-items: center;
-    }
-    
-    .floating-offer-text {
-        gap: 6px;
-        flex: 1;
-    }
-    
-    .floating-offer-main {
-        font-size: 0.95rem;
-        line-height: 1.3;
-    }
-    
-    .floating-btn-claim {
-        padding: 10px 16px;
-        font-size: 0.9rem;
-        min-height: 44px; /* Taille tactile */
-        white-space: nowrap;
-        flex-shrink: 0;
-    }
-    
-    .floating-close {
-        width: 32px;
-        height: 32px;
-        font-size: 1.1rem;
+        display: none !important; /* Masquer complètement sur mobile */
     }
 }
 
 @media (max-width: 480px) {
-    .floating-offer {
-        top: 75px !important; /* Ajusté pour les petits écrans */
-        right: 10px;
-        left: 10px;
-        margin-top: 0;
-    }
-    
-    .floating-offer-content {
-        padding: 12px 14px;
-        gap: 10px;
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .floating-offer-text {
-        gap: 4px;
-        width: 100%;
-    }
-    
-    .floating-offer-main {
-        font-size: 0.9rem;
-        line-height: 1.2;
-    }
-    
-    .floating-offer-badge {
-        font-size: 0.7rem;
-        align-self: center;
-    }
-    
-    .floating-timer {
-        font-size: 0.8rem;
-    }
-    
-    .floating-offer-actions {
-        width: 100%;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-    }
-    
-    .floating-btn-claim {
-        padding: 8px 14px;
-        font-size: 0.85rem;
-        min-height: 40px;
-        flex: 1;
-        margin-right: 10px;
-    }
-    
-    .floating-close {
-        width: 36px;
-        height: 36px;
-        flex-shrink: 0;
+    .container {
+        padding: 0 1rem;
     }
 }
 
