@@ -333,57 +333,99 @@
 /* Responsive pour le floating banner */
 @media (max-width: 768px) {
     .floating-offer {
-        top: 15px !important;
+        top: 80px !important; /* Plus bas pour ne pas chevaucher avec la bannière d'urgence */
         right: 15px;
         left: 15px;
         max-width: none;
         border-radius: 12px;
+        z-index: 900; /* Z-index plus bas que la navbar */
+        position: fixed;
     }
     
     .floating-offer-content {
-        padding: 12px 16px;
-        gap: 12px;
+        padding: 14px 18px;
+        gap: 14px;
+        align-items: center;
     }
     
     .floating-offer-text {
-        gap: 4px;
+        gap: 6px;
+        flex: 1;
     }
     
     .floating-offer-main {
-        font-size: 0.9rem;
+        font-size: 0.95rem;
+        line-height: 1.3;
     }
     
     .floating-btn-claim {
-        padding: 6px 12px;
-        font-size: 0.8rem;
+        padding: 10px 16px;
+        font-size: 0.9rem;
+        min-height: 44px; /* Taille tactile */
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+    
+    .floating-close {
+        width: 32px;
+        height: 32px;
+        font-size: 1.1rem;
     }
 }
 
 @media (max-width: 480px) {
     .floating-offer {
-        top: 10px !important;
+        top: 75px !important; /* Ajusté pour les petits écrans */
+        right: 10px;
+        left: 10px;
         margin-top: 0;
     }
     
     .floating-offer-content {
-        padding: 10px 12px;
-        gap: 8px;
+        padding: 12px 14px;
+        gap: 10px;
+        flex-direction: column;
+        text-align: center;
     }
     
     .floating-offer-text {
-        gap: 3px;
+        gap: 4px;
+        width: 100%;
     }
     
     .floating-offer-main {
-        font-size: 0.85rem;
+        font-size: 0.9rem;
+        line-height: 1.2;
     }
     
     .floating-offer-badge {
-        font-size: 0.65rem;
+        font-size: 0.7rem;
+        align-self: center;
     }
     
     .floating-timer {
-        font-size: 0.75rem;
+        font-size: 0.8rem;
+    }
+    
+    .floating-offer-actions {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .floating-btn-claim {
+        padding: 8px 14px;
+        font-size: 0.85rem;
+        min-height: 40px;
+        flex: 1;
+        margin-right: 10px;
+    }
+    
+    .floating-close {
+        width: 36px;
+        height: 36px;
+        flex-shrink: 0;
     }
 }
 
@@ -531,6 +573,23 @@ body.dark-mode {
     box-sizing: border-box;
 }
 
+/* Prévention des débordements horizontaux */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+img, video, iframe {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Éviter les débordements de texte */
+h1, h2, h3, h4, h5, h6, p, div {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -545,6 +604,9 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     transition: background-color var(--transition-base), color var(--transition-base);
+    /* Amélioration des performances sur mobile */
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
 }
 
 /* ========================================
@@ -582,6 +644,9 @@ a {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 var(--spacing-md);
+    width: 100%;
+    /* Éviter les débordements */
+    overflow: hidden;
 }
 
 @keyframes animated-gradient {
@@ -651,6 +716,8 @@ body.dark-mode .section-badge {
     position: relative;
     overflow: hidden;
     z-index: 1;
+    min-height: 44px; /* Taille tactile minimum */
+    -webkit-tap-highlight-color: transparent; /* Supprime le highlight sur mobile */
 }
 
 .btn-primary {
@@ -979,7 +1046,8 @@ body.dark-mode .hero::before {
     perspective: 1000px;
     z-index: 1;
     padding: 30px 0; /* Add vertical padding */
-    overflow: visible;
+    overflow: hidden; /* Éviter les débordements des animations */
+    width: 100%;
 }
 
 .hero-image-wrapper {
@@ -987,7 +1055,9 @@ body.dark-mode .hero::before {
     animation: float 8s ease-in-out infinite;
     transform-style: preserve-3d;
     z-index: 1;
-    margin: 0 60px; /* Add margin to prevent clipping */
+    margin: 0 auto; /* Centre au lieu de margin fixes */
+    max-width: 500px; /* Largeur maximale définie */
+    width: 100%;
 }
 
 @keyframes float {
@@ -1681,6 +1751,62 @@ body.dark-mode .floating-card {
     transform: translateY(-3px) scale(1.02);
 }
 
+/* Amélioration de l'ergonomie tactile globale */
+@media (max-width: 768px) {
+    .btn, .pricing-btn, .floating-btn-claim {
+        min-height: 48px; /* Taille tactile améliorée */
+        padding: 1rem 2rem;
+        font-size: 1rem;
+        border-radius: var(--radius-lg);
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation; /* Évite le délai de tap */
+    }
+    
+    /* Boutons de pricing plus grands sur mobile */
+    .pricing-btn {
+        min-height: 52px;
+        padding: 1.25rem 2rem;
+        font-size: 1.1rem;
+        font-weight: 700;
+    }
+    
+    /* Espacement tactile entre éléments interactifs */
+    .nav-menu a,
+    .social-links a,
+    .footer-links a {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    /* Boutons d'action flottants */
+    .urgency-close,
+    .floating-close,
+    .theme-toggle,
+    .mobile-menu-toggle {
+        min-width: 44px;
+        min-height: 44px;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    /* Feedback tactile pour tous les boutons */
+    .btn:active,
+    .pricing-btn:active,
+    .floating-btn-claim:active {
+        transform: scale(0.96);
+        transition: transform 0.1s ease;
+    }
+    
+    /* Amélioration des liens tactiles */
+    a, button {
+        -webkit-tap-highlight-color: rgba(124, 58, 237, 0.1);
+        tap-highlight-color: rgba(124, 58, 237, 0.1);
+    }
+}
+
 /* ========================================
    FINAL CTA SECTION
 ======================================== */
@@ -1787,6 +1913,9 @@ body.dark-mode .highlight-item {
     font-family: 'Poppins', sans-serif;
     font-size: 1rem;
     transition: var(--transition-fast);
+    min-height: 44px; /* Taille tactile minimum */
+    -webkit-appearance: none; /* Supprime le style par défaut iOS */
+    -moz-appearance: none; /* Supprime le style par défaut Firefox */
 }
 
 .cta-form input::placeholder,
@@ -1833,7 +1962,7 @@ body.dark-mode .success-badge {
 }
 
 .success-badge.secondary {
-    transform: translateX(2rem);
+    transform: translateX(0);
 }
 
 .badge-number {
@@ -2236,6 +2365,26 @@ body.dark-mode {
         justify-content: center;
     }
     
+    /* Optimisation du formulaire sur mobile */
+    .form-group {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .cta-form input,
+    .cta-form textarea {
+        font-size: 16px; /* Évite le zoom automatique sur iOS */
+        padding: 1.125rem 1rem; /* Plus de padding vertical pour le tactile */
+        border-width: 2px; /* Bordure plus épaisse pour la visibilité */
+    }
+    
+    .cta-form button {
+        min-height: 56px; /* Bouton plus grand pour le tactile */
+        font-size: 1.1rem;
+        padding: 1.25rem 2rem;
+        border-radius: var(--radius-lg);
+    }
+    
     .footer-content {
         grid-template-columns: 1fr;
         text-align: center;
@@ -2268,6 +2417,33 @@ body.dark-mode {
         backface-visibility: hidden;
     }
     
+    /* Éviter tous les débordements horizontaux sur mobile */
+    body, html {
+        overflow-x: hidden;
+        max-width: 100vw;
+    }
+    
+    .container {
+        padding: 0 1rem;
+        max-width: 100%;
+    }
+    
+    /* Corriger les éléments qui dépassent */
+    .hero-visual,
+    .floating-cards-container,
+    .hero-image-wrapper {
+        max-width: 100%;
+        overflow: hidden;
+    }
+    
+    .floating-card {
+        position: static;
+        display: block;
+        margin: 1rem auto;
+        transform: none !important;
+        animation: none;
+    }
+    
     /* Réduire la complexité des gradients sur mobile */
     .gradient-text {
         background: var(--primary-color);
@@ -2279,38 +2455,87 @@ body.dark-mode {
     
     /* Bannière d'urgence responsive */
     .urgency-banner {
-        padding: 8px 0;
+        padding: 10px 0;
         position: relative;
-        min-height: auto;
-    }
-    
-    .urgency-text {
-        font-size: 0.8rem;
-        gap: 0.5rem;
-        flex-wrap: wrap;
-        justify-content: center;
-        text-align: center;
-        line-height: 1.2;
-    }
-    
-    .urgency-countdown {
-        font-size: 0.75rem;
-        padding: 4px 8px;
-        white-space: nowrap;
-    }
-    
-    .urgency-close {
-        width: 24px;
-        height: 24px;
-        font-size: 0.9rem;
-        position: absolute;
-        top: 50%;
-        right: 10px;
-        transform: translateY(-50%);
+        min-height: 50px;
+        display: flex;
+        align-items: center;
     }
     
     .urgency-content {
-        padding-right: 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding-right: 50px;
+        min-height: 44px; /* Hauteur tactile minimum */
+    }
+    
+    .urgency-text {
+        font-size: 0.85rem;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        text-align: left;
+        line-height: 1.3;
+        flex: 1;
+        display: flex;
+        align-items: center;
+    }
+    
+    .urgency-icon {
+        flex-shrink: 0;
+        margin-right: 0.5rem;
+    }
+    
+    .urgency-date {
+        flex-shrink: 0;
+        white-space: nowrap;
+        font-size: 0.8rem;
+    }
+    
+    .urgency-countdown {
+        font-size: 0.8rem;
+        padding: 6px 10px;
+        white-space: nowrap;
+        flex-shrink: 0;
+        border-radius: 6px;
+        min-height: 32px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .urgency-separator {
+        display: none; /* Masquer sur mobile pour économiser l'espace */
+    }
+    
+    .urgency-close {
+        width: 44px; /* Taille tactile minimum */
+        height: 44px;
+        font-size: 1.2rem;
+        position: absolute;
+        top: 50%;
+        right: 5px;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    .urgency-close:hover,
+    .urgency-close:focus {
+        background: rgba(255, 255, 255, 0.25);
+        transform: translateY(-50%) scale(1.1);
+    }
+    
+    .urgency-close:active {
+        transform: translateY(-50%) scale(0.95);
     }
 }
 
@@ -2319,26 +2544,45 @@ body.dark-mode {
         padding: 0 1rem;
     }
     
-    /* Bannière d'urgence encore plus compacte */
+    /* Bannière d'urgence encore plus compacte mais tactile */
     .urgency-banner {
-        padding: 6px 0;
+        padding: 8px 0;
+        min-height: 48px;
+    }
+    
+    .urgency-content {
+        padding-right: 54px;
+        min-height: 44px;
     }
     
     .urgency-text {
+        font-size: 0.8rem;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+    }
+    
+    .urgency-date {
         font-size: 0.75rem;
-        gap: 0.25rem;
+        padding: 4px 6px;
     }
     
     .urgency-countdown {
-        font-size: 0.7rem;
-        padding: 3px 6px;
+        font-size: 0.75rem;
+        padding: 4px 8px;
+        min-height: 28px;
     }
     
     .urgency-close {
-        width: 20px;
-        height: 20px;
-        font-size: 0.8rem;
+        width: 44px; /* Garder taille tactile même sur petit écran */
+        height: 44px;
+        font-size: 1rem;
         right: 5px;
+    }
+    
+    /* Ajustement du texte sur très petits écrans */
+    .urgency-text span:not(.urgency-countdown):not(.urgency-date) {
+        font-size: 0.75rem;
     }
     
     /* Réduire les animations sur très petits écrans */
@@ -2465,28 +2709,33 @@ textarea:focus-visible {
 /* Optimisations mobile pour le bouton langue */
 @media (max-width: 768px) {
     #language-switcher {
-        bottom: 80px; /* Plus haut pour éviter les zones de navigation mobile */
+        bottom: 20px; /* Position fixe */
         right: 15px;
-        z-index: 9999;
+        z-index: 999; /* En dessous des éléments flottants mais visible */
     }
     
     #lang-btn {
-        width: 55px;
-        height: 55px;
+        width: 56px; /* Taille tactile optimale */
+        height: 56px;
         font-size: 1rem;
-        box-shadow: 0 3px 10px rgba(124, 58, 237, 0.4);
+        box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
+        transition: all 0.3s ease;
+    }
+    
+    #lang-btn:active {
+        transform: scale(0.9);
     }
 }
 
 @media (max-width: 480px) {
     #language-switcher {
-        bottom: 100px; /* Encore plus haut sur très petits écrans */
+        bottom: 15px; /* Position cohérente */
         right: 10px;
     }
     
     #lang-btn {
-        width: 50px;
-        height: 50px;
-        font-size: 0.9rem;
+        width: 52px; /* Toujours tactile */
+        height: 52px;
+        font-size: 0.95rem;
     }
 }
