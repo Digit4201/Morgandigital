@@ -2004,10 +2004,6 @@ body.dark-mode .badge-text {
     transition: width var(--transition-base);
 }
 
-.footer-links a:hover {
-    color: var(--text-dark);
-}
-
 .footer-links a:hover::after {
     width: 100%;
 }
@@ -2019,591 +2015,36 @@ body.dark-mode .badge-text {
 .footer-contact li {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
+    gap: 0.75rem;
     color: var(--text-medium);
 }
 
 .footer-contact svg {
     flex-shrink: 0;
-    color: var(--primary-light);
 }
 
 .footer-bottom {
-    padding: 1.5rem 0;
     border-top: 1px solid var(--bg-gray);
+    padding: 1.5rem 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: border-color var(--transition-base);
-}
-
-.footer-bottom p {
-    color: var(--text-light);
-    margin: 0;
     font-size: 0.875rem;
+    color: var(--text-light);
 }
 
 .footer-legal {
     display: flex;
-    gap: 2rem;
+    gap: 1.5rem;
 }
 
 .footer-legal a {
     color: var(--text-light);
-    font-size: 0.875rem;
 }
 
 .footer-legal a:hover {
-    color: var(--text-dark);
-}
-
-/* ========================================
-   CUSTOM CURSOR
-======================================== */
-.cursor {
-    position: fixed;
-    width: 10px;
-    height: 10px;
-    background-color: var(--primary-color);
-    border-radius: 50%;
-    left: 0;
-    top: 0;
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-    mix-blend-mode: difference;
-    transition: width 0.3s ease, height 0.3s ease, background-color var(--transition-base);
-}
-
-.cursor-follower {
-    position: fixed;
-    width: 30px;
-    height: 30px;
-    border: 2px solid var(--primary-color);
-    border-radius: 50%;
-    left: 0;
-    top: 0;
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-    z-index: 9998;
-    transition: transform 0.1s linear, opacity 0.3s ease, background-color 0.3s ease, border-color var(--transition-base);
-}
-
-.cursor-grow {
-    width: 40px;
-    height: 40px;
-}
-
-.cursor-follower-grow {
-    transform: scale(2.5) translate(-20%, -20%);
-    background-color: var(--primary-color-20, rgba(124, 58, 237, 0.2));
-    border-color: transparent;
-}
-
-body.dark-mode {
-    --primary-color-20: rgba(167, 139, 250, 0.2);
-}
-
-
-/* ========================================
-   MESSAGES FORMULAIRE AJAX
-======================================== */
-.form-messages {
-    margin-top: 15px;
-    padding: 0;
-    border-radius: 8px;
-    font-size: 0.95rem;
-}
-
-.success-message {
-    background: linear-gradient(135deg, #10b981, #059669);
-    color: white;
-    padding: 15px 20px;
-    border-radius: 8px;
-    border: 1px solid #059669;
-    animation: slideInUp 0.3s ease-out;
-}
-
-.error-message {
-    background: linear-gradient(135deg, #ef4444, #dc2626);
-    color: white;
-    padding: 15px 20px;
-    border-radius: 8px;
-    border: 1px solid #dc2626;
-    animation: slideInUp 0.3s ease-out;
-}
-
-@keyframes slideInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* ========================================
-   RESPONSIVE DESIGN
-======================================== */
-@media (max-width: 1024px) {
-    .hero-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-    
-    .hero-subtitle {
-        margin-left: auto;
-        margin-right: auto;
-    }
-    
-    .hero-visual {
-        order: -1;
-        margin-bottom: 3rem;
-    }
-    
-    .hero-stats {
-        justify-content: center;
-    }
-    
-    .floating-card {
-        display: none;
-    }
-    
-    .cta-card {
-        grid-template-columns: 1fr;
-        text-align: center;
-        padding: 3rem 2rem;
-    }
-    
-    .cta-visual {
-        display: none;
-    }
-    
-    .footer-content {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 768px) {
-    .mobile-menu-toggle {
-        display: flex;
-    }
-    
-    /* Désactiver les effets 3D sur tablettes et mobiles */
-    .benefit-card:hover {
-        transform: translateY(-5px) scale(1.01);
-        transition: transform 0.3s ease;
-    }
-    
-    .portfolio-item:hover {
-        transform: translateY(-5px) scale(1.01);
-        transition: transform 0.3s ease;
-    }
-    
-    /* Réduire les animations floating */
-    .floating-card {
-        animation: floatReduced 6s ease-in-out infinite;
-    }
-    
-    .hero-image-wrapper {
-        animation: floatReduced 6s ease-in-out infinite;
-    }
-    
-    @keyframes floatReduced {
-        0%, 100% { transform: translateY(0px); }
-        50% { transform: translateY(-10px); }
-    }
-    
-    .pricing-grid {
-        grid-template-columns: 1fr;
-        max-width: 400px;
-    }
-    
-    .pricing-card {
-        min-height: auto;
-    }
-    
-    .pricing-card.popular {
-        transform: none;
-    }
-    
-    .pricing-card.popular:hover {
-        transform: translateY(-10px) scale(1.02);
-    }
-    
-    .nav-menu {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        width: 100%;
-        height: 100vh;
-        background: var(--bg-white);
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 2rem;
-        transform: translateX(100%);
-        transition: transform var(--transition-base), background-color var(--transition-base);
-    }
-    
-    .nav-menu.active {
-        transform: translateX(0);
-    }
-
-    .nav-menu a {
-        font-size: 1.5rem;
-    }
-    
-    .hero {
-        padding: 8rem 0 4rem;
-    }
-    
-    .browser-mockup {
-        max-width: 350px;
-        margin: 0 auto;
-    }
-    
-    .benefits-grid, .portfolio-grid, .testimonials-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .process-timeline::after, .timeline-progress {
-        left: 30px;
-    }
-    .process-step {
-        width: 100%;
-        padding-left: 80px;
-        padding-right: 1rem;
-    }
-    .process-step:nth-child(odd), .process-step:nth-child(even) {
-        left: 0;
-        text-align: left;
-    }
-    .process-step .step-number, .process-step:nth-child(odd) .step-number, .process-step:nth-child(even) .step-number {
-        left: 0;
-    }
-    
-    .offer-highlights {
-        grid-template-columns: 1fr;
-    }
-    
-    .cta-buttons {
-        flex-direction: column;
-        width: 100%;
-    }
-    
-    .cta-buttons .btn {
-        width: 100%;
-        justify-content: center;
-    }
-    
-    /* Optimisation du formulaire sur mobile */
-    .form-group {
-        flex-direction: column;
-        gap: 1rem;
-    }
-    
-    .cta-form input,
-    .cta-form textarea {
-        font-size: 16px; /* Évite le zoom automatique sur iOS */
-        padding: 1.125rem 1rem; /* Plus de padding vertical pour le tactile */
-        border-width: 2px; /* Bordure plus épaisse pour la visibilité */
-    }
-    
-    .cta-form button {
-        min-height: 56px; /* Bouton plus grand pour le tactile */
-        font-size: 1.1rem;
-        padding: 1.25rem 2rem;
-        border-radius: var(--radius-lg);
-    }
-    
-    .footer-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-    
-    .social-links {
-        justify-content: center;
-    }
-    
-    .footer-bottom {
-        flex-direction: column;
-        gap: 1rem;
-        text-align: center;
-    }
-    
-    .footer-legal {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-
-    .cursor, .cursor-follower {
-        display: none !important;
-    }
-    
-    /* Optimisations performances mobile */
-    * {
-        -webkit-transform: translateZ(0);
-        transform: translateZ(0);
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
-    }
-    
-    /* Éviter tous les débordements horizontaux sur mobile */
-    body, html {
-        overflow-x: hidden;
-        max-width: 100vw;
-        /* Amélioration des performances mobiles */
-        -webkit-transform: translateZ(0);
-        -webkit-perspective: 1000;
-        -webkit-backface-visibility: hidden;
-    }
-    
-    .container {
-        padding: 0 1rem;
-        max-width: 100%;
-    }
-    
-    /* Corriger les éléments qui dépassent */
-    .hero-visual,
-    .floating-cards-container,
-    .hero-image-wrapper {
-        max-width: 100%;
-        overflow: hidden;
-    }
-    
-    .floating-card {
-        position: static;
-        display: block;
-        margin: 1rem auto;
-        transform: none !important;
-        animation: none;
-    }
-    
-    /* Réduire la complexité des gradients sur mobile */
-    .gradient-text {
-        background: var(--primary-color);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        animation: none;
-    }
-    
-    /* Bannière d'urgence responsive */
-    .urgency-banner {
-        padding: 10px 0;
-        position: relative;
-        min-height: 50px;
-        display: flex;
-        align-items: center;
-    }
-    
-    .urgency-content {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-        padding-right: 50px;
-        min-height: 44px; /* Hauteur tactile minimum */
-    }
-    
-    .urgency-text {
-        font-size: 0.85rem;
-        gap: 0.75rem;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-        text-align: left;
-        line-height: 1.3;
-        flex: 1;
-        display: flex;
-        align-items: center;
-    }
-    
-    .urgency-icon {
-        flex-shrink: 0;
-        margin-right: 0.5rem;
-    }
-    
-    .urgency-date {
-        flex-shrink: 0;
-        white-space: nowrap;
-        font-size: 0.8rem;
-    }
-    
-    .urgency-countdown {
-        font-size: 0.8rem;
-        padding: 6px 10px;
-        white-space: nowrap;
-        flex-shrink: 0;
-        border-radius: 6px;
-        min-height: 32px;
-        display: flex;
-        align-items: center;
-    }
-    
-    .urgency-separator {
-        display: none; /* Masquer sur mobile pour économiser l'espace */
-    }
-    
-    .urgency-close {
-        width: 44px; /* Taille tactile minimum */
-        height: 44px;
-        font-size: 1.2rem;
-        position: absolute;
-        top: 50%;
-        right: 5px;
-        transform: translateY(-50%);
-        background: rgba(255, 255, 255, 0.15);
-        border: 1px solid rgba(255, 255, 255, 0.25);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        -webkit-tap-highlight-color: transparent;
-    }
-    
-    .urgency-close:hover,
-    .urgency-close:focus {
-        background: rgba(255, 255, 255, 0.25);
-        transform: translateY(-50%) scale(1.1);
-    }
-    
-    .urgency-close:active {
-        transform: translateY(-50%) scale(0.95);
-    }
-}
-
-@media (max-width: 480px) {
-    .container {
-        padding: 0 1rem;
-    }
-    
-    /* Bannière d'urgence encore plus compacte mais tactile */
-    .urgency-banner {
-        padding: 8px 0;
-        min-height: 48px;
-    }
-    
-    .urgency-content {
-        padding-right: 54px;
-        min-height: 44px;
-    }
-    
-    .urgency-text {
-        font-size: 0.8rem;
-        gap: 0.5rem;
-        flex-wrap: wrap;
-        justify-content: flex-start;
-    }
-    
-    .urgency-date {
-        font-size: 0.75rem;
-        padding: 4px 6px;
-    }
-    
-    .urgency-countdown {
-        font-size: 0.75rem;
-        padding: 4px 8px;
-        min-height: 28px;
-    }
-    
-    .urgency-close {
-        width: 44px; /* Garder taille tactile même sur petit écran */
-        height: 44px;
-        font-size: 1rem;
-        right: 5px;
-    }
-    
-    /* Ajustement du texte sur très petits écrans */
-    .urgency-text span:not(.urgency-countdown):not(.urgency-date) {
-        font-size: 0.75rem;
-    }
-    
-    /* Réduire les animations sur très petits écrans */
-    .floating-card {
-        animation: none;
-        position: static;
-        margin: 0.5rem 0;
-        transform: none !important;
-    }
-    
-    .hero-image-wrapper {
-        animation: none;
-        transform: none;
-    }
-    
-    .hero-stats {
-        flex-direction: column;
-        gap: 1.5rem;
-        align-items: center;
-    }
-    
-    .section-header {
-        margin-bottom: 2.5rem;
-    }
-    
-    .cta-card {
-        padding: 2.5rem 1.5rem;
-    }
-    
-    /* Désactiver les effets 3D sur très petits écrans */
-    .benefit-card:hover {
-        transform: none;
-    }
-    
-    .portfolio-item:hover {
-        transform: none;
-    }
-}
-
-/* ========================================
-   ANIMATIONS & STATES
-======================================== */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes pulse {
-    0%, 100% { transform: scale(1); opacity: 0.5; }
-    50% { transform: scale(1.2); opacity: 0.3; }
-}
-
-/* Focus states for accessibility */
-button:focus-visible,
-a:focus-visible,
-input:focus-visible,
-textarea:focus-visible {
-    outline: 3px solid var(--accent-color);
-    outline-offset: 3px;
-    border-radius: var(--radius-sm);
-}
-
-/* Print styles */
-@media print {
-    .navbar, .footer, .cta-buttons { display: none; }
-    body { font-size: 12pt; }
-    .container { max-width: 100%; }
-}
-
-
-.mobile-menu-toggle.active span:nth-child(1) {
-    transform: rotate(45deg) translate(6px, 6px);
-}
-
-.mobile-menu-toggle.active span:nth-child(2) {
-    opacity: 0;
-}
-
-.mobile-menu-toggle.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(6px, -6px);
+    color: var(--bg-white);
+    text-decoration: underline;
 }
 
 /* ========================================
@@ -2613,70 +2054,264 @@ textarea:focus-visible {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    z-index: 9999; /* Z-index plus élevé pour être au-dessus de tout */
-    pointer-events: auto;
-    touch-action: manipulation;
+    z-index: 998;
 }
 
 #lang-btn {
-    background-color: var(--primary-color);
+    background: var(--gradient-secondary);
     color: white;
-    border: none;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
-    width: 60px; /* Augmenté pour mobile */
-    height: 60px; /* Augmenté pour mobile */
-    font-size: 1.1rem;
-    font-weight: bold;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
-    transition: all 0.3s ease;
-    cursor: pointer;
-    text-decoration: none;
-    -webkit-tap-highlight-color: transparent;
+    font-weight: 700;
+    font-size: 1rem;
+    box-shadow: var(--shadow-lg);
+    transition: var(--transition-base);
 }
 
-#lang-btn:hover, #lang-btn:focus {
-    background-color: var(--primary-dark);
-    transform: scale(1.1);
-    box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
+#lang-btn:hover {
+    transform: scale(1.1) rotate(15deg);
+    box-shadow: var(--shadow-glow);
 }
 
-#lang-btn:active {
-    transform: scale(0.95);
+/* ========================================
+   CURSOR
+======================================== */
+.cursor, .cursor-follower {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999;
 }
 
-/* Optimisations mobile pour le bouton langue */
+.cursor {
+    width: 8px;
+    height: 8px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease;
+}
+
+.cursor.hover {
+    transform: translate(-50%, -50%) scale(8);
+    background-color: rgba(124, 58, 237, 0.2);
+}
+
+.cursor-follower {
+    width: 30px;
+    height: 30px;
+    border: 2px solid var(--primary-color);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: transform 0.3s ease-out;
+}
+
+.cursor-follower.hover {
+    transform: translate(-50%, -50%) scale(1.5);
+    border-color: var(--secondary-color);
+}
+
 @media (max-width: 768px) {
-    #language-switcher {
-        bottom: 20px; /* Position fixe */
-        right: 15px;
-        z-index: 999; /* En dessous des éléments flottants mais visible */
-    }
-    
-    #lang-btn {
-        width: 56px; /* Taille tactile optimale */
-        height: 56px;
-        font-size: 1rem;
-        box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
-        transition: all 0.3s ease;
-    }
-    
-    #lang-btn:active {
-        transform: scale(0.9);
+    .cursor, .cursor-follower {
+        display: none;
     }
 }
 
-@media (max-width: 480px) {
-    #language-switcher {
-        bottom: 15px; /* Position cohérente */
+/* ========================================
+   ANIMATIONS
+======================================== */
+.benefit-card, .portfolio-item, .process-step, .pricing-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.benefit-card.animate-in,
+.portfolio-item.animate-in,
+.process-step.animate-in,
+.pricing-card.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+======================================== */
+@media (max-width: 1024px) {
+    .nav-menu {
+        display: none;
+    }
+
+    .mobile-menu-toggle {
+        display: flex;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .hero-visual {
+        display: none;
+    }
+
+    .pricing-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cta-card {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .urgency-text {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .urgency-separator {
+        display: none;
+    }
+
+    .process-timeline::after {
+        left: 30px;
+    }
+
+    .process-step {
+        width: 100%;
+        padding-left: 60px;
+        text-align: left;
+    }
+
+    .process-step:nth-child(odd) {
+        left: 0;
+    }
+
+    .process-step:nth-child(even) {
+        left: 0;
+    }
+
+    .step-number {
+        left: 5px;
+    }
+
+    .process-step:nth-child(odd) .step-number,
+    .process-step:nth-child(even) .step-number {
+        left: 5px;
+    }
+}
+
+/* Keyframes pour les animations */
+@keyframes pulse {
+    0% {
+        transform: scale(0.95);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(0.95);
+        opacity: 0.5;
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* ========================================
+   CORRECTIFS POUR MOBILE
+======================================== */
+
+@media (max-width: 1024px) {
+    /* Rendre le bouton hamburger fonctionnel */
+    .mobile-menu-toggle {
+        display: flex; /* S'assurer que le bouton est visible */
+        z-index: 1001; /* Le mettre au-dessus du menu */
+    }
+
+    /* Cacher le menu par défaut */
+    .nav-menu {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh; /* Plein écran */
+        background: var(--bg-white);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        z-index: 1000;
+        transform: translateX(100%);
+        transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    }
+
+    /* Style du menu quand il est actif (ouvert) */
+    .nav-menu.active {
+        display: flex;
+        transform: translateX(0);
+    }
+
+    /* Animation pour les liens du menu */
+    .nav-menu.active li {
+        opacity: 0;
+        animation: fadeIn 0.5s forwards;
+    }
+    .nav-menu.active li:nth-child(1) { animation-delay: 0.2s; }
+    .nav-menu.active li:nth-child(2) { animation-delay: 0.3s; }
+    .nav-menu.active li:nth-child(3) { animation-delay: 0.4s; }
+    .nav-menu.active li:nth-child(4) { animation-delay: 0.5s; }
+    .nav-menu.active li:nth-child(5) { animation-delay: 0.6s; }
+}
+
+@media (max-width: 768px) {
+    /* Positionner la pop-up en bas de l'écran */
+    .floating-offer {
+        bottom: 80px; /* Laisser de la place pour le bouton de langue */
+        top: auto;
+        left: 10px;
         right: 10px;
+        width: auto;
+        max-width: none;
+        transform: translateY(200%); /* Commence en dehors de l'écran */
+        transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
     }
-    
-    #lang-btn {
-        width: 52px; /* Toujours tactile */
-        height: 52px;
-        font-size: 0.95rem;
+    .floating-offer.show {
+        transform: translateY(0); /* Glisse vers le haut pour apparaître */
     }
+
+    /* Rendre le bouton de langue visible et le positionner */
+    #language-switcher {
+        display: block; /* S'assurer qu'il est visible */
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        z-index: 1000;
+    }
+}
+
+/* Animation pour les liens du menu */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
