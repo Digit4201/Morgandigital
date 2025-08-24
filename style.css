@@ -200,6 +200,7 @@
     top: 100px;
     right: 20px;
     max-width: 350px;
+    width: 350px;
     background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
     backdrop-filter: blur(10px);
     border: 2px solid var(--primary-color);
@@ -335,43 +336,167 @@
 @media (max-width: 768px) {
     .floating-offer {
         position: fixed !important;
-        top: 80px !important;
+        top: 50% !important;
         right: 10px !important;
-        left: 10px !important;
-        max-width: none;
+        left: auto !important;
+        transform: translateY(-50%) !important;
+        max-width: 180px !important;
+        width: 180px !important;
+        border-radius: 8px !important;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
+    }
+    
+    .floating-offer.show {
+        transform: translateY(-50%) !important;
+    }
+    
+    .floating-offer.hide {
+        transform: translateY(-50%) translateX(100%) !important;
+        opacity: 0 !important;
     }
     
     .floating-offer-content {
-        padding: 12px 16px;
-        gap: 12px;
+        padding: 6px 8px !important;
+        gap: 4px !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
     }
     
     .floating-offer-text {
-        gap: 4px;
+        gap: 4px !important;
+        text-align: center !important;
+        flex: none !important;
+        display: flex !important;
+        flex-direction: column !important;
     }
     
     .floating-offer-badge {
-        font-size: 0.65rem;
-        padding: 3px 6px;
+        font-size: 0.6rem !important;
+        padding: 2px 6px !important;
+        align-self: center !important;
+        margin-bottom: 0 !important;
+        line-height: 1.2 !important;
     }
     
     .floating-offer-main {
-        font-size: 0.85rem;
+        font-size: 0.75rem !important;
+        line-height: 1.3 !important;
+        margin-bottom: 0 !important;
     }
     
     .floating-timer {
-        font-size: 0.75rem;
+        font-size: 0.7rem !important;
+        text-align: center !important;
+        margin-bottom: 0 !important;
+        line-height: 1.2 !important;
+    }
+    
+    .floating-offer-actions {
+        align-items: center !important;
+        gap: 8px !important;
+        flex-shrink: 0 !important;
+        width: 100% !important;
+        justify-content: center !important;
     }
     
     .floating-btn-claim {
-        padding: 6px 12px;
-        font-size: 0.8rem;
+        padding: 6px 12px !important;
+        font-size: 0.7rem !important;
+        border-radius: 12px !important;
+        min-height: 32px !important;
+        white-space: nowrap !important;
+        line-height: 1.2 !important;
     }
     
     .floating-close {
-        width: 20px;
-        height: 20px;
-        font-size: 0.8rem;
+        width: 20px !important;
+        height: 20px !important;
+        font-size: 0.75rem !important;
+        position: absolute !important;
+        top: 4px !important;
+        right: 4px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .floating-offer {
+        top: 50% !important;
+        right: 8px !important;
+        left: auto !important;
+        transform: translateY(-50%) !important;
+        max-width: 160px !important;
+        width: 160px !important;
+        border-radius: 6px !important;
+    }
+    
+    .floating-offer.show {
+        transform: translateY(-50%) !important;
+    }
+    
+    .floating-offer.hide {
+        transform: translateY(-50%) translateX(100%) !important;
+        opacity: 0 !important;
+    }
+    
+    .floating-offer-content {
+        padding: 5px 6px !important;
+        gap: 3px !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+    
+    .floating-offer-text {
+        flex: none !important;
+        text-align: center !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 3px !important;
+    }
+    
+    .floating-offer-badge {
+        font-size: 0.55rem !important;
+        padding: 2px 5px !important;
+        margin-bottom: 0 !important;
+        line-height: 1.2 !important;
+        align-self: center !important;
+    }
+    
+    .floating-offer-main {
+        font-size: 0.7rem !important;
+        line-height: 1.3 !important;
+        margin-bottom: 0 !important;
+    }
+    
+    .floating-timer {
+        font-size: 0.65rem !important;
+        margin-bottom: 0 !important;
+        line-height: 1.2 !important;
+        text-align: center !important;
+    }
+    
+    .floating-offer-actions {
+        width: 100% !important;
+        justify-content: center !important;
+        gap: 6px !important;
+    }
+    
+    .floating-btn-claim {
+        padding: 5px 10px !important;
+        font-size: 0.65rem !important;
+        min-height: 28px !important;
+        border-radius: 10px !important;
+        white-space: nowrap !important;
+        line-height: 1.2 !important;
+    }
+    
+    .floating-close {
+        width: 18px !important;
+        height: 18px !important;
+        font-size: 0.7rem !important;
+        top: 3px !important;
+        right: 3px !important;
     }
 }
 
@@ -2140,122 +2265,22 @@ body.dark-mode .badge-text {
 }
 
 /* ========================================
-   RESPONSIVE DESIGN
+   RESPONSIVE DESIGN & MOBILE FIXES
 ======================================== */
-@media (max-width: 1024px) {
-    .nav-menu {
-        display: none;
-    }
 
+@media (max-width: 1024px) {
+    /* --- Menu --- */
     .mobile-menu-toggle {
         display: flex;
+        z-index: 1001;
     }
-
-    .hero-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
-    .hero-visual {
-        display: none;
-    }
-
-    .pricing-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .cta-card {
-        grid-template-columns: 1fr;
-    }
-
-    .footer-content {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 768px) {
-    .urgency-text {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
-    }
-
-    .urgency-separator {
-        display: none;
-    }
-
-    .process-timeline::after {
-        left: 30px;
-    }
-
-    .process-step {
-        width: 100%;
-        padding-left: 60px;
-        text-align: left;
-    }
-
-    .process-step:nth-child(odd) {
-        left: 0;
-    }
-
-    .process-step:nth-child(even) {
-        left: 0;
-    }
-
-    .step-number {
-        left: 5px;
-    }
-
-    .process-step:nth-child(odd) .step-number,
-    .process-step:nth-child(even) .step-number {
-        left: 5px;
-    }
-}
-
-/* Keyframes pour les animations */
-@keyframes pulse {
-    0% {
-        transform: scale(0.95);
-        opacity: 0.5;
-    }
-    50% {
-        transform: scale(1.1);
-        opacity: 0.7;
-    }
-    100% {
-        transform: scale(0.95);
-        opacity: 0.5;
-    }
-}
-
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-20px);
-    }
-}
-
-/* ========================================
-   CORRECTIFS POUR MOBILE
-======================================== */
-
-@media (max-width: 1024px) {
-    /* Rendre le bouton hamburger fonctionnel */
-    .mobile-menu-toggle {
-        display: flex; /* S'assurer que le bouton est visible */
-        z-index: 1001; /* Le mettre au-dessus du menu */
-    }
-
-    /* Cacher le menu par défaut */
     .nav-menu {
         display: none;
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
-        height: 100vh; /* Plein écran */
+        height: 100vh;
         background: var(--bg-white);
         flex-direction: column;
         align-items: center;
@@ -2265,14 +2290,10 @@ body.dark-mode .badge-text {
         transform: translateX(100%);
         transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
     }
-
-    /* Style du menu quand il est actif (ouvert) */
     .nav-menu.active {
         display: flex;
         transform: translateX(0);
     }
-
-    /* Animation pour les liens du menu */
     .nav-menu.active li {
         opacity: 0;
         animation: fadeIn 0.5s forwards;
@@ -2282,35 +2303,105 @@ body.dark-mode .badge-text {
     .nav-menu.active li:nth-child(3) { animation-delay: 0.4s; }
     .nav-menu.active li:nth-child(4) { animation-delay: 0.5s; }
     .nav-menu.active li:nth-child(5) { animation-delay: 0.6s; }
+
+    /* --- Layout --- */
+    .hero-content, .cta-card, .footer-content {
+        grid-template-columns: 1fr;
+    }
+    .hero-visual { display: none; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .hero-content { text-align: center; }
 }
 
 @media (max-width: 768px) {
-    /* Positionner la pop-up en bas de l'écran */
+    /* --- Urgency Banner --- */
+    .urgency-banner {
+        padding: 8px 0; /* Reduce padding */
+    }
+    .urgency-text {
+        flex-direction: row; /* Keep it in a row but wrap */
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+        font-size: 0.8rem; /* Reduce font size */
+        text-align: center;
+    }
+    .urgency-content {
+        justify-content: center;
+    }
+    .urgency-close {
+        display: none; /* Hide close button to save space */
+    }
+    .urgency-separator { display: none; }
+
+    /* --- Floating Offer Pop-up --- */
     .floating-offer {
-        bottom: 80px; /* Laisser de la place pour le bouton de langue */
+        bottom: 70px; /* Position above language switcher */
         top: auto;
         left: 10px;
         right: 10px;
         width: auto;
         max-width: none;
-        transform: translateY(200%); /* Commence en dehors de l'écran */
+        transform: translateY(200%);
         transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
     }
     .floating-offer.show {
-        transform: translateY(0); /* Glisse vers le haut pour apparaître */
+        transform: translateY(0);
+    }
+    .floating-offer-content {
+        padding: 12px; /* Reduce padding */
+        gap: 8px;
+    }
+    .floating-offer-main {
+        font-size: 0.8rem; /* Reduce font size */
+    }
+    .floating-timer {
+        font-size: 0.7rem; /* Reduce font size */
+    }
+    .floating-btn-claim {
+        padding: 6px 10px; /* Make button smaller */
+        font-size: 0.75rem;
     }
 
-    /* Rendre le bouton de langue visible et le positionner */
+    /* --- Language Switcher --- */
     #language-switcher {
-        display: block; /* S'assurer qu'il est visible */
+        display: block;
         position: fixed;
-        bottom: 20px;
-        left: 20px;
+        bottom: 15px;
+        left: 15px;
         z-index: 1000;
+    }
+    #lang-btn {
+        width: 45px; /* Make button smaller */
+        height: 45px;
+    }
+
+    /* --- Process Section --- */
+    .process-timeline::after { left: 30px; }
+    .process-step {
+        width: 100%;
+        padding-left: 60px;
+        text-align: left;
+    }
+    .process-step:nth-child(odd), .process-step:nth-child(even) {
+        left: 0;
+    }
+    .step-number { left: 5px; }
+    .process-step:nth-child(odd) .step-number, .process-step:nth-child(even) .step-number {
+        left: 5px;
     }
 }
 
-/* Animation pour les liens du menu */
+/* Keyframes pour les animations */
+@keyframes pulse {
+    0% { transform: scale(0.95); opacity: 0.5; }
+    50% { transform: scale(1.1); opacity: 0.7; }
+    100% { transform: scale(0.95); opacity: 0.5; }
+}
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
